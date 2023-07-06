@@ -14,6 +14,10 @@ export const Podcast = sequelize.define('Podcast', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  category: {
+    type: DataTypes.TEXT,
+    allowNull: false
+},
   host: {
     type: DataTypes.STRING,
     allowNull: false
