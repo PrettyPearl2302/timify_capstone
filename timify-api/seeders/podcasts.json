@@ -2,35 +2,35 @@
     {
       "title": "Tech Talk Today",
       "description": "A daily podcast discussing the latest technology news, trends, and innovations.",
-      "coverImage": "https://example.com/techtalktoday.jpg",
+      "coverImage": "https://thefrugalchicken.com/wp-content/uploads/2023/04/What-do-baby-ducks-eat-min.jpg",
       "host": "John Smith",
       "category": "Technology"
     },
     {
       "title": "The Creative Mind",
       "description": "Exploring the creative process and discussing insights from artists, writers, and musicians.",
-      "coverImage": "https://example.com/thecreativemind.jpg",
+      "coverImage": "https://www.bhg.com/thmb/fDCErWRrZQj-4FTvPrZtYXPhqmg=/1244x0/filters:no_upscale():strip_icc()/softened-butter-stick-wrapper-knife-0977bc7b-b5c5be9fe30041cb8b1e0974bf304415.jpg",
       "host": "Emma Johnson",
       "category": "Arts & Culture"
     },
     {
       "title": "Sports Zone",
       "description": "Covering the latest sports news, interviews with athletes, and analysis of major games and events.",
-      "coverImage": "https://example.com/sportszone.jpg",
+      "coverImage": "https://www.si.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkzOTA5OTY2MjM3NjcyODk5/world-cup-soccer-ball.jpg",
       "host": "Mike Thompson",
       "category": "Sports"
     },
     {
       "title": "Health & Wellness Journey",
       "description": "Empowering individuals to achieve a balanced and healthy lifestyle through expert interviews and practical tips.",
-      "coverImage": "https://example.com/healthwellnessjourney.jpg",
+      "coverImage": "https://www.statnews.com/wp-content/uploads/2022/03/AdobeStock_246942922.jpeg",
       "host": "Sarah Roberts",
       "category": "Health & Wellness"
     },
     {
       "title": "True Crime Chronicles",
       "description": "Exploring real-life crime stories, delving into investigations, and uncovering the mysteries behind infamous cases.",
-      "coverImage": "https://example.com/truecrimechronicles.jpg",
+      "coverImage": "https://akns-images.eonline.com/eol_images/Entire_Site/2022424/rs_1200x1200-220524162315-1200-fbi-cbs.jpg?fit=around%7C1200:1200&output-quality=90&crop=1200:1200;center,top",
       "host": "David Johnson",
       "category": "True Crime"
     }
