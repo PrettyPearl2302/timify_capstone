@@ -1,0 +1,33 @@
+[
+    {
+      "title": "Tech Talk Today",
+      "description": "A daily podcast discussing the latest technology news, trends, and innovations.",
+      "coverImage": "https://example.com/techtalktoday.jpg",
+      "host": "John Smith"
+    },
+    {
+      "title": "The Creative Mind",
+      "description": "Exploring the creative process and discussing insights from artists, writers, and musicians.",
+      "coverImage": "https://example.com/thecreativemind.jpg",
+      "host": "Emma Johnson"
+    },
+    {
+      "title": "Sports Zone",
+      "description": "Covering the latest sports news, interviews with athletes, and analysis of major games and events.",
+      "coverImage": "https://example.com/sportszone.jpg",
+      "host": "Mike Thompson"
+    },
+    {
+      "title": "Health & Wellness Journey",
+      "description": "Empowering individuals to achieve a balanced and healthy lifestyle through expert interviews and practical tips.",
+      "coverImage": "https://example.com/healthwellnessjourney.jpg",
+      "host": "Sarah Roberts"
+    },
+    {
+      "title": "True Crime Chronicles",
+      "description": "Exploring real-life crime stories, delving into investigations, and uncovering the mysteries behind infamous cases.",
+      "coverImage": "https://example.com/truecrimechronicles.jpg",
+      "host": "David Johnson"
+    }
+  ]
+  
