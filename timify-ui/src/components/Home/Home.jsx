@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
+import "./Home.css"
+import PodcastGrid from '../PodcastGrid/PodcastGrid'
 
-const Home = () => {
+const Home = ({podcasts, setPodcasts}) => {
   return (
-    <div>Home</div>
+    <div className='home'>
+        <PodcastGrid podcasts={podcasts} setPodcasts={setPodcasts} />
+    </div>
   )
 }
 
