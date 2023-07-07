@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css';
 import Home from '../Home/Home';
+import Footer from '../Footer/Footer';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             element={<Home podcasts={podcasts} setPodcasts={setPodcasts} />}
           />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
