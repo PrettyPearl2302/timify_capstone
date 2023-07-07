@@ -10,8 +10,12 @@ app.use(cors())
 app.use(express.json()); // Middleware for parsing JSON bodies from HTTP requests
 app.use(morgan())
 
-// Route to get all podcasts
 
+app.get('/', (req, res) => {
+  res.send("it works"); 
+});
+
+// Route to get all podcasts
 app.get('/podcasts', async (req, res) => {
     try {
       const podcasts = await Podcast.findAll();
