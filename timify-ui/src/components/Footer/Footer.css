@@ -1,0 +1,19 @@
+.footer {
+    position: relative;
+    margin-top: 6rem;
+    background-color: white;
+    display: flex;
+    border-bottom: 1px solid gray;
+    gap: 100px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+.footer-wrapper {
+    display: none;
+}
+
+.footer-stores {
+    width: 100px;
+}

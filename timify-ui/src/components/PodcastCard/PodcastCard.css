@@ -1,0 +1,16 @@
+.podcast-each {
+	width: 240px;
+	height: 400px;
+	object-fit: cover;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: 0.15s;
+}
+
+.cover-image {
+    height: 50%;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
