@@ -14,6 +14,7 @@ function App() {
       const response = await fetch('http://localhost:3000/podcasts');
       const data = await response.json();
       setPodcasts(data);
+      console.log({podcasts})
     };
     fetchPodcasts();
   }, []);
