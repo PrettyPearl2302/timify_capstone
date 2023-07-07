@@ -1,0 +1,9 @@
+.podcast-header {
+    margin-top: 6rem;
+}
+
+.podcast-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 50px;
+}
