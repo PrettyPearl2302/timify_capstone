@@ -3,43 +3,5 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-}
-
-.new-post-form, .post {
-  width: 500px;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.new-post-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.new-post-form input, .new-post-form textarea {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.new-post-form button {
-  padding: 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-}
-
-.new-post-form button:hover {
-  background-color: #0056b3;
-}
-
-.posts-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #f1f1f1;
 }
