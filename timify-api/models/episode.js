@@ -60,16 +60,3 @@ export const Episode = sequelize.define('Episode', {
 
 PodcastEpisode.belongsTo(PodcastSeries, { foreignKey: 'podcastSeriesUuid', as: 'podcastSeries' });
 
-// subtitle
-//       audioUrl
-//       fileLength
-//       fileType
-//       duration
-//       episodeType
-//       episodeNumber
-//       podcastSeries{
-//         uuid
-//         name
-//         rssUrl
-//         itunesId
-//       } -ask gpt
