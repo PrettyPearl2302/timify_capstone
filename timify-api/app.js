@@ -10,7 +10,7 @@ const app = express();
 
 
 app.use(cors())
-app.use(express.json()); // Middleware for parsing JSON bodies from HTTP requests
+app.use(express.json()); 
 app.use(morgan('combined'))
 
 async function taddyGraphqlRequest ({query, variables}) {
@@ -86,43 +86,7 @@ async function taddyGraphqlRequest ({query, variables}) {
     }
   }`;
 
-  // module.exports = {
-  //   taddyGraphqlRequest, 
-  //   taddyQuery: {
-  //     GET_PODCASTS,
-  //     GET_PODCASTEPISODE
-  //   }
-  // }
-
   
-
-
-
-// app.get('/', (req, res) => {
-//   res.send("it works"); 
-// });
-
-// // Route to get all podcasts
-// app.get('/podcasts', async (req, res) => {
-//     try {
-//       const podcasts = await Podcast.findAll();
-//       res.json(podcasts);
-//     } catch (err) {
-//       res.status(500).json({ message: err.message });
-//     }
-//   });
-
-// sequelize.sync({ alter: true })
-//   .then(() => {
-//     const port = 3000;
-//     app.listen(port, () => {
-//       console.log(`App is listening on port ${port}`);
-//     });
-//   })
-//   .catch(error => {
-//     console.error('Unable to connect to the database:', error);
-//   });
-
 (async () => {
   const podcastsQuery = {
     query: GET_PODCASTSERIES,
