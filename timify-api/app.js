@@ -1,37 +1,134 @@
+import dotenv  from "dotenv"
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { sequelize } from './database.js';
-import { Podcast } from './models/index.js';
+import {GraphQLClient} from 'graphql-request'
+
+dotenv.config()
 
 const app = express();
 
+
 app.use(cors())
 app.use(express.json()); // Middleware for parsing JSON bodies from HTTP requests
-app.use(morgan())
+app.use(morgan('combined'))
 
+async function taddyGraphqlRequest ({query, variables}) {
+  const endpointURL = "https://api.taddy.org"
 
-app.get('/', (req, res) => {
-  res.send("it works"); 
-});
+  const headers = {
+    'Content-Type': 'application/json',
+    'User-Agent' : 'Timify',
+    'X-USER-ID': 484,
+    'X-API-KEY': "f0074dd996f94da9d99719653673f2d4cc35bacd7bc57d359daa48e35aeb80193bd2bc6d3df05aa388c4548856b9bb59c3",
+  }
 
-// Route to get all podcasts
-app.get('/podcasts', async (req, res) => {
-    try {
-      const podcasts = await Podcast.findAll();
-      res.json(podcasts);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+  try {
+    const client = new GraphQLClient(endpointURL, {headers})
+    const data = await client.request (query, variables)
+    return data;
+  }
+  catch (e) {
+    console.log("inside sentTaddyGraphqlRequest", e)
+  }
+
+  }
+
+  const GET_PODCASTSERIES = `
+  query getPodcastSeries($uuid: ID!) {
+    getPodcastSeries(uuid: $uuid){
+      uuid
+      name
+      imageUrl
+      description
+      authorName
+      datePublished
+      itunesId
+      genres
+      rssUrl
+      rssOwnerName
+      rssOwnerPublicEmail
+      hash
+      childrenHash
+      itunesInfo{
+        uuid
+        publisherId
+        publisherName
+        baseArtworkUrl
+        baseArtworkUrlOf(size: 640)
+      }
     }
-  });
+  }
+  `;
 
-sequelize.sync({ alter: true })
-  .then(() => {
-    const port = 3000;
-    app.listen(port, () => {
-      console.log(`App is listening on port ${port}`);
-    });
-  })
-  .catch(error => {
-    console.error('Unable to connect to the database:', error);
-  });
+  const GET_PODCASTEPISODE = `
+  query getPodcastEpisode($uuid: ID!) {
+    getPodcastEpisode(uuid: $uuid){
+      uuid
+      hash
+      name
+      description
+      imageUrl
+      date published
+      subtitle
+      audioUrl
+      fileLength
+      fileType
+      duration
+      episodeType
+      episodeNumber
+      podcastSeries{
+        uuid
+        name
+        rssUrl
+        itunesId
+      }
+    }
+  }`;
+
+  // module.exports = {
+  //   taddyGraphqlRequest, 
+  //   taddyQuery: {
+  //     GET_PODCASTS,
+  //     GET_PODCASTEPISODE
+  //   }
+  // }
+
+  
+
+
+
+// app.get('/', (req, res) => {
+//   res.send("it works"); 
+// });
+
+// // Route to get all podcasts
+// app.get('/podcasts', async (req, res) => {
+//     try {
+//       const podcasts = await Podcast.findAll();
+//       res.json(podcasts);
+//     } catch (err) {
+//       res.status(500).json({ message: err.message });
+//     }
+//   });
+
+// sequelize.sync({ alter: true })
+//   .then(() => {
+//     const port = 3000;
+//     app.listen(port, () => {
+//       console.log(`App is listening on port ${port}`);
+//     });
+//   })
+//   .catch(error => {
+//     console.error('Unable to connect to the database:', error);
+//   });
+
+(async () => {
+  const podcastsQuery = {
+    query: GET_PODCASTSERIES,
+    variables: {uuid: "cb8d858a-3ef4-4645-8942-67e55c0927f2"}
+  };
+
+  const data = await taddyGraphqlRequest(podcastsQuery);
+  console.log(data);
+})();
