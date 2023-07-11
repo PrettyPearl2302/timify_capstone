@@ -69,13 +69,12 @@ async function taddyGraphqlRequest ({query, variables}) {
       name
       description
       imageUrl
-      date published
+      datePublished
       subtitle
       audioUrl
       fileLength
       fileType
       duration
-      episodeType
       episodeNumber
       podcastSeries{
         uuid
