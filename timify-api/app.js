@@ -95,15 +95,15 @@ async function taddyGraphqlRequest ({query, variables}) {
 
  
 
-  (async () => {
-  const podcastsQuery = {
-    query: GET_PODCASTSERIES,
-    variables: {uuid: "cb8d858a-3ef4-4645-8942-67e55c0927f2"}
-  };
+//   (async () => {
+//   const podcastsQuery = {
+//     query: GET_PODCASTSERIES,
+//     variables: {uuid: "cb8d858a-3ef4-4645-8942-67e55c0927f2"}
+//   };
 
-  const data = await taddyGraphqlRequest(podcastsQuery);
-  console.log(data);
-})();
+//   const data = await taddyGraphqlRequest(podcastsQuery);
+//   console.log(data);
+// })();
 
 // (async () => {
 //   const episodesQuery = {
