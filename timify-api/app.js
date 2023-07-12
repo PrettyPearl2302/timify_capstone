@@ -86,7 +86,16 @@ async function taddyGraphqlRequest ({query, variables}) {
   }`;
 
   
-(async () => {
+ export {taddyGraphqlRequest}
+ export const taddyQuery = {
+    GET_PODCASTSERIES,
+    GET_PODCASTEPISODE,
+ };
+        
+
+ 
+
+  (async () => {
   const podcastsQuery = {
     query: GET_PODCASTSERIES,
     variables: {uuid: "cb8d858a-3ef4-4645-8942-67e55c0927f2"}
