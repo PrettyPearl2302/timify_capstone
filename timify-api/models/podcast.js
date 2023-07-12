@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database.js';
-import { ItunesInfo } from './itunesInfo.js';
 
 export const Podcast = sequelize.define('Podcast', {
   uuid: {
@@ -50,6 +49,3 @@ export const Podcast = sequelize.define('Podcast', {
   },
 });
 
-Podcast.hasOne(ItunesInfo, {
-  foreignKey: 'podcastUuid'
-});

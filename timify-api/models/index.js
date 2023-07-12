@@ -1,3 +1,8 @@
 import {Podcast} from './podcast.js'
+import { Episode } from './episode.js';
 
-export {Podcast};
+Podcast.hasMany(Episode, { foreignKey: 'podcastUuid' });
+Episode.belongsTo(Podcast, { foreignKey: 'podcastUuid' });
+
+
+export {Podcast, Episode};
