@@ -69,13 +69,12 @@ async function taddyGraphqlRequest ({query, variables}) {
       name
       description
       imageUrl
-      date published
+      datePublished
       subtitle
       audioUrl
       fileLength
       fileType
       duration
-      episodeType
       episodeNumber
       podcastSeries{
         uuid
@@ -96,3 +95,13 @@ async function taddyGraphqlRequest ({query, variables}) {
   const data = await taddyGraphqlRequest(podcastsQuery);
   console.log(data);
 })();
+
+// (async () => {
+//   const episodesQuery = {
+//     query: GET_PODCASTEPISODE,
+//     variables: {uuid: "d682a935-ad2d-46ee-a0ac-139198b83bcc"}
+//   };
+
+//   const data = await taddyGraphqlRequest(episodesQuery);
+//  console.log(data);
+// })();
