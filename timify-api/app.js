@@ -32,10 +32,10 @@ async function taddyGraphqlRequest(query, variables) {
   return response.data;
 }
 
-export async function searchForTerm(term, page) {
+export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
   const query = `
-    query SearchForTerm($term: String!, $page: Int!) {
-      searchForTerm(term: $term, page: $page) {
+    query SearchForTerm($term: String!, $page: Int!, $limitPerPage: Int!, $filterForGenres: [Genre]) {
+      searchForTerm(term: $term, page: $page, limitPerPage: $limitPerPage, filterForGenres: $filterForGenres ) {
         searchId
         podcastSeries {
           uuid
@@ -59,7 +59,7 @@ export async function searchForTerm(term, page) {
     }
   `;
 
-  const data = await taddyGraphqlRequest(query, { term, page });
+  const data = await taddyGraphqlRequest(query, { term, page, limitPerPage, filterForGenres });
   return data.data.searchForTerm; 
 }
 
