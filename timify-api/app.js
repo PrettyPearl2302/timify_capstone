@@ -3,7 +3,6 @@ import axios from "axios";
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import {GraphQLClient} from 'graphql-request'
 
 dotenv.config()
 
@@ -61,7 +60,7 @@ export async function searchForTerm(term, page) {
   `;
 
   const data = await taddyGraphqlRequest(query, { term, page });
-  return data.data.searchForTerm; // Adjust this line based on the actual structure of `data`
+  return data.data.searchForTerm; 
 }
 
 
