@@ -21,7 +21,6 @@ app.get('/api/home', async (req, res) => {
   for (const Genre of Genres) {
       try {
           const podcasts = await searchForTerm(term, page, limitPerPage, [Genre]);
-          // console.log(Genre, podcasts)
           podcastByGenre[Genre] = podcasts.podcastSeries;
       } catch (err) {
           console.error(err);
