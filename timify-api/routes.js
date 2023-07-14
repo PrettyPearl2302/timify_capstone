@@ -15,14 +15,14 @@ app.get('/api/home', async (req, res) => {
   const limitPerPage = 10;
   const Genres = ["PODCASTSERIES_BUSINESS", "PODCASTSERIES_COMEDY", "PODCASTSERIES_HEALTH_AND_FITNESS", "PODCASTSERIES_NEWS", "PODCASTSERIES_SOCIETY_AND_CULTURE", "PODCASTSERIES_SPORTS"]
 
-  let podcastByGenre = [];
+  let podcastByGenre = {};
   let errorOccurred = null;
 
   for (let Genre of Genres) {
       try {
           const podcasts = await searchForTerm(term, page, limitPerPage, [Genre]);
-          console.log(Genre, podcasts)
-          podcastByGenre.push(...podcasts.podcastSeries)
+          // console.log(Genre, podcasts)
+          podcastByGenre[Genre] = podcasts.podcastSeries;
       } catch (err) {
           console.error(err);
           if (!errorOccurred) {
