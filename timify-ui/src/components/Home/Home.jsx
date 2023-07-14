@@ -3,11 +3,11 @@ import "./Home.css"
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
 import Search from '../Search/Search'
 
-const Home = ({podcasts, setPodcasts}) => {
+const Home = ({podcastsByGenre, setPodcastsByGenre}) => {
   return (
     <div className='home'>
         <Search />
-        <PodcastGrid podcasts={podcasts} setPodcasts={setPodcasts} />
+        <PodcastGrid podcastsByGenre={podcastsByGenre} setPodcastsByGenre={setPodcastsByGenre} />
     </div>
   )
 }

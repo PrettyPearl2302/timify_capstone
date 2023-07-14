@@ -3,18 +3,23 @@ import { AiOutlineLoading } from "react-icons/ai"
 import "./PodcastGrid.css"
 import PodcastCard from '../PodcastCard/PodcastCard'
 
-const PodcastGrid = ({ podcasts }) => {
+const PodcastGrid = ({ podcastsByGenre }) => {
 
   return (
-    <>
-        <h3 className='podcast-header'>Podcasts</h3>
-        <div className="podcast-grid">
-            { podcasts.map((podcast, i) => (
-                    <PodcastCard podcast={podcast} key={i} />
-                )
-            )}
+    <div className="podcastGrid">
+      {podcastsByGenre && Object.entries(podcastsByGenre).map(([genre, podcasts]) => (
+        <div key={genre} className="genre-section">
+          <h2>{genre}</h2>
+          <div className="podcast-grid">
+            {podcasts.map((podcast) => (
+              <PodcastCard key={podcast.uuid} podcast={podcast} />
+            ))}
+          </div>
         </div>
-    </>
+      ))}
+    </div>
+
+
   )
 }
 

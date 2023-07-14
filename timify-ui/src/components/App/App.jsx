@@ -6,19 +6,19 @@ import Footer from '../Footer/Footer';
 
 
 function App() {
-  const [podcasts, setPodcasts] = useState([]);
+  const [podcastsByGenre, setPodcastsByGenre] = useState([]);
 
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
-      const response = await fetch('http://localhost:3000/podcasts');
+      const response = await fetch('http://localhost:5000/api/home');
       const data = await response.json();
-      setPodcasts(data);
+      setPodcastsByGenre(data);
       console.log({data})
       }
       catch(error) {
-        console.error('Error displaying podcasts')
-				setPodcasts(false)
+        console.error('Error displaying podcasts', error)
+				setPodcasts({})
       }
     }
     fetchPodcasts();
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home podcasts={podcasts} setPodcasts={setPodcasts} />}
+            element={<Home podcastsByGenre={podcastsByGenre} setPodcastsByGenre={setPodcastsByGenre} />}
           />
         </Routes>
         <Footer />
