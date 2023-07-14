@@ -11,14 +11,14 @@ function App() {
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
-      const response = await fetch('http://localhost:3000/podcasts');
+      const response = await fetch('http://localhost:5000/api/home');
       const data = await response.json();
-      setPodcasts(data);
+      setPodcasts(data.podcastSeries);
       console.log({data})
       }
       catch(error) {
         console.error('Error displaying podcasts')
-				setPodcasts(false)
+				setPodcasts([])
       }
     }
     fetchPodcasts();

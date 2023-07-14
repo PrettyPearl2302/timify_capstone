@@ -70,33 +70,3 @@ export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
 
 
 
-  
-
-
-
-
-
-//   const GET_PODCASTEPISODE = `
-//   query getPodcastEpisode($uuid: ID!) {
-//     getPodcastEpisode(uuid: $uuid){
-//       uuid
-//       hash
-//       name
-//       description
-//       imageUrl
-//       datePublished
-//       subtitle
-//       audioUrl
-//       fileLength
-//       fileType
-//       duration
-//       episodeNumber
-//       podcastSeries{
-//         uuid
-//         name
-//         rssUrl
-//         itunesId
-//       }
-//     }
-//   }`;
-

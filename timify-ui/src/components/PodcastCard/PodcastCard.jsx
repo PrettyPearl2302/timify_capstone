@@ -4,10 +4,10 @@ import "./PodcastCard.css"
 const PodcastCard = ({podcast}) => {
   
   return (
-    <div key={podcast.id} className='podcast-each'>
-         <img src={podcast.coverImage} alt={podcast.title} className='cover-image'/>
-         <p>{podcast.title}</p>
-         <p>{podcast.host}</p>
+    <div key={podcast.uuid} className='podcast-each'>
+         <img src={podcast.imageUrl} alt={podcast.name} className='cover-image'/>
+         <p>{podcast.name}</p>
+         <p>{podcast.authorName}</p>
     </div>
   )
 }
