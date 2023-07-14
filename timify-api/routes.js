@@ -18,7 +18,7 @@ app.get('/api/home', async (req, res) => {
   let podcastByGenre = {};
   let errorOccurred = null;
 
-  for (let Genre of Genres) {
+  for (const Genre of Genres) {
       try {
           const podcasts = await searchForTerm(term, page, limitPerPage, [Genre]);
           // console.log(Genre, podcasts)
