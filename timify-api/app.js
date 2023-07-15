@@ -15,22 +15,27 @@ app.use(morgan('combined'))
 const endpointURL = "https://api.taddy.org"
 
 async function taddyGraphqlRequest(query, variables) {
-  const response = await axios({
-    url: endpointURL,
-    method: 'post',
-    data: {
-      query,
-      variables
-    },
-    headers : {
-      'Content-Type': 'application/json',
-      'User-Agent' : 'Timify',
-      'X-USER-ID': 484,
-      'X-API-KEY': `${process.env.API_KEY}`,
-    }
-  });
-  return response.data;
+  try {
+    const response = await axios({
+      url: endpointURL,
+      method: 'post',
+      data: {
+        query,
+        variables
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Timify',
+        'X-USER-ID': 484,
+        'X-API-KEY': `${process.env.API_KEY}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error in taddyGraphqlRequest:", error);
+  }
 }
+
 
 export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
   const query = `
@@ -60,6 +65,9 @@ export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
   `;
 
   const data = await taddyGraphqlRequest(query, { term, page, limitPerPage, filterForGenres });
+    if (data.errors) {
+      console.error(data.errors)
+    }
   return data.data.searchForTerm; 
 }
 
