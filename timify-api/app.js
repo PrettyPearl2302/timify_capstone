@@ -17,26 +17,25 @@ const endpointURL = "https://api.taddy.org"
 async function taddyGraphqlRequest(query, variables) {
   try {
     const response = await axios({
-    url: endpointURL,
-    method: 'post',
-    data: {
-      query,
-      variables
-    },
-    headers : {
-      'Content-Type': 'application/json',
-      'User-Agent' : 'Timify',
-      'X-USER-ID': 484,
-      'X-API-KEY': `${process.env.API_KEY}`,
-    }
-  });
-  console.log(response.data)
-  return response.data;
-}
-  catch(error){
+      url: endpointURL,
+      method: 'post',
+      data: {
+        query,
+        variables
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Timify',
+        'X-USER-ID': 484,
+        'X-API-KEY': `${process.env.API_KEY}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
     console.error("Error in taddyGraphqlRequest:", error);
   }
 }
+
 
 export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
   const query = `
