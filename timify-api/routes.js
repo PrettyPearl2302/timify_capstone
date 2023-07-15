@@ -37,15 +37,18 @@ app.get('/api/home', async (req, res) => {
   }
 });
 
-//route to get podcast from search query
-app.get ('api/search', async (req, res)=> {
-  const {term} = req.query
 
+
+//route to get podcast from search query
+app.get('/api/search', async (req, res) => {
+  const {term} = req.query
+  
   try {
     const podcasts = await searchForTerm(term, 1, 25,[])
     res.json(podcasts);
   }
-  catch {
+  catch(err) {
+    console.error(err)
     res.status(500).send(err.message);
   }
 })
