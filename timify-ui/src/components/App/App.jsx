@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css';
 import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
+import { ProductProvider } from '../../state/PodcastContext';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   }, []);
 
   return (
+    <PodcastProvider>
     <div className="app">
       <Router>
         <Routes>
@@ -37,6 +39,7 @@ function App() {
         <Footer />
       </Router>
     </div>
+    </PodcastProvider>
   );
 }
 
