@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import PodcastDetail from '../PodcastDetail/PodcastDetail';
 import { PodcastProvider} from '../../state/PodcastContext';
 import SearchResults from '../SearchResult/SearchResult';
+import Search from '../Search/Search';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       }
       catch(error) {
         console.error('Error displaying podcasts', error)
-				setPodcasts({})
+				setPodcastsByGenre({})
       }
     }
     fetchPodcasts();
@@ -36,13 +37,15 @@ function App() {
     <div className="app">
       <PodcastProvider value={{podcastsByGenre, selectPodcast, setSelectedPodcast}}>
           <Router>
+          <Search />
               <Routes>
                   <Route
                       path="/"
                       element={<Home />}
                   />
                   <Route path="/podcast/:id" element={<PodcastDetail />} />
-                  <Route path="/search/:term" element={<SearchResults />} />
+                  <Route path="/search/:term" element={<SearchResults />} /> 
+                  {/* mismatching routes for search function */}
               </Routes>
               <Footer />
           </Router>

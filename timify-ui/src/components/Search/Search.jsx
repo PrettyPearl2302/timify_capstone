@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import axios from 'axios';
 import './Search.css'
 import { useNavigate } from 'react-router-dom';
-import { createSearchParams } from 'react-router-dom';
+
 
 const Search = () => {
     const [term, setTerm] = useState('')
@@ -11,10 +10,8 @@ const Search = () => {
 
     const handleSearch = async (event) => {
         event.preventDefault();
-        navigate({
-            pathname: '/search',
-            search:`?${createSearchParams(term)}`,
-          })
+        navigate(`/search/${term}`)
+        console.log(term)
     }
 
     return (
