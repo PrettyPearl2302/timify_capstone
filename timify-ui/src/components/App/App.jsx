@@ -10,6 +10,7 @@ import SearchResults from '../SearchResult/SearchResult';
 
 function App() {
   const [podcastsByGenre, setPodcastsByGenre] = useState([]);
+  const [selectedPodcast, setSelectedPodcast] = useState(null);
 
   useEffect(() => {
     const fetchPodcasts = async () => {
@@ -28,14 +29,17 @@ function App() {
   
   }, []);
 
+  const selectPodcast = (podcast) => { setSelectedPodcast(podcast);};
+
+
   return (
     <div className="app">
-      <PodcastProvider>
+      <PodcastProvider value={{podcastsByGenre, selectPodcast, setSelectedPodcast}}>
           <Router>
               <Routes>
                   <Route
                       path="/"
-                      element={<Home podcastsByGenre={podcastsByGenre} setPodcastsByGenre={setPodcastsByGenre} />}
+                      element={<Home />}
                   />
                   <Route path="/podcast/:id" element={<PodcastDetail />} />
                   <Route path="/search/:term" element={<SearchResults />} />
