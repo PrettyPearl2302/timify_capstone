@@ -11,7 +11,6 @@ const Search = () => {
     const handleSearch = async (event) => {
         event.preventDefault();
         navigate(`/search/${term}`)
-        console.log(term)
     }
 
     return (

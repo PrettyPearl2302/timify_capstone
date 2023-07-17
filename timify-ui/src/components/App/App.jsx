@@ -45,7 +45,6 @@ function App() {
                   />
                   <Route path="/podcast/:id" element={<PodcastDetail />} />
                   <Route path="/search/:term" element={<SearchResults />} /> 
-                  {/* mismatching routes for search function */}
               </Routes>
               <Footer />
           </Router>
