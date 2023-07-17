@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, { useContext } from 'react'
 import "./Home.css"
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
 import Search from '../Search/Search'
+import { PodcastContext } from '../../state/PodcastContext'
 
 const Home = ({podcastsByGenre, setPodcastsByGenre}) => {
+  // const { podcastsByGenre, setPodcastsByGenre } = useContext(PodcastContext);
+
   return (
     <div className='home'>
         <Search />

@@ -2,20 +2,19 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import './Search.css'
+import { useNavigate } from 'react-router-dom';
+import { createSearchParams } from 'react-router-dom';
 
 const Search = () => {
     const [term, setTerm] = useState('')
-    const [podcastsByGenre, setPodcastsByGenre] = useState([]);
+    const navigate = useNavigate();
 
     const handleSearch = async (event) => {
         event.preventDefault();
-        try {
-            const response = await axios.get(`http://localhost:5000/api/search?term=${term}`);
-            setPodcastsByGenre(response.data.podcastSeries);  
-        }
-        catch (err) {
-            console.error(err);
-        }
+        navigate({
+            pathname: '/search',
+            search:`?${createSearchParams(term)}`,
+          })
     }
 
     return (
@@ -29,11 +28,6 @@ const Search = () => {
             />
             <button type="submit">Search</button>
           </form>
-          <div>
-            {podcastsByGenre.map((podcast) => (
-              <div key={podcast.uuid}>{podcast.name}</div>
-            ))}
-          </div>
         </div>
       );
 }
