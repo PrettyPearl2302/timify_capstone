@@ -5,7 +5,8 @@ import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
 import PodcastDetail from '../PodcastDetail/PodcastDetail';
 import SearchResults from '../SearchResult/SearchResult';
-import { Search } from 'react-router-dom';
+import Search from '../Search/Search';
+
 
 function App() {
   const [podcastsByGenre, setPodcastsByGenre] = useState([]);

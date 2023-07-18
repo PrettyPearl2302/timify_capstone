@@ -72,6 +72,46 @@ export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
 }
 
 
+export async function getPodcastSeries(uuid) {
+  const query = `
+    query getPodcastSeries($uuid: ID!) {
+      getPodcastSeries(uuid: $uuid ) {
+        uuid
+        name
+        datePublished
+        description
+        imageUrl
+        genre
+        seriesType
+        copyright
+        authorName
+        isBlocked
+        episodes{
+          uuid
+          name
+          datePublished
+          description
+          audioUrl
+          fileLength
+          fileType
+          duration
+          seasonNumber
+          episodeNumber
+          podcastSeries
+        }
+      }
+      }
+    }
+  `;
+
+  const data = await taddyGraphqlRequest(query, { uuid });
+    if (data.errors) {
+      console.error(data.errors)
+    }
+  return data.data.getPodcastSeries; 
+}
+
+
 
 
 

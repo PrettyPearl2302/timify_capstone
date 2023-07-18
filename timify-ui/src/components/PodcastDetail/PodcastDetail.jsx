@@ -1,30 +1,36 @@
-import { useContext, useEffect } from "react";
-import { PodcastContext } from "../../state/PodcastContext";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 function PodcastDetail () {
-    const {selectedPodcast, selectPodcast, podcastsByGenre} = useContext(PodcastContext); 
-    const {id} = useParams();
 
-    
+    const [podcastInfo, setPodcastInfo] = useState([])
+
+    const {uuid} = useParams();
+
     useEffect(() => {
-        const podcast = podcastsByGenre.find((podcast) => podcast.uuid === id);
-        selectPodcast(podcast);
-    }, [id, selectPodcast, podcastsByGenre]);
-    if(!selectedPodcast) {
-        return <div>Loading...</div>
-    }
+        const fetchPodcastInfo = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/podcast?id=${uuid}`);
+                setPodcastInfo(response.data.podcastSeries);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        };
+        fetchPodcastInfo();
+    }, [uuid]);
+
+
     return (
         <div>
-            <img src={selectedPodcast.imageUrl} alt={selectedPodcast.name} className='cover-image'/>
-            <h2>{selectedPodcast.name}</h2>
-            <p>{selectedPodcast.description}</p>
-            <p>{selectedPodcast.authorName}</p>
-            <p>{selectedPodcast.datePublished}</p>
-            <p>{selectedPodcast.genre}</p>
+            {podcastInfo.map((podcast) => (
+                <div key={podcast.uuid}>{podcast.name}</div>
+            ))}
         </div>
-    )
-}
+    );
+ }
+   
 
 
 export default PodcastDetail
