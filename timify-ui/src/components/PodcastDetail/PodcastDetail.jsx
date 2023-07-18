@@ -3,7 +3,7 @@ import { PodcastContext } from "../../state/PodcastContext";
 import { useParams } from "react-router-dom";
 
 function PodcastDetail () {
-    const {selectedPodcast,selectPodcast, podcastsByGenre} = useContext(PodcastContext); 
+    const {selectedPodcast, selectPodcast, podcastsByGenre} = useContext(PodcastContext); 
     const {id} = useParams();
 
     
