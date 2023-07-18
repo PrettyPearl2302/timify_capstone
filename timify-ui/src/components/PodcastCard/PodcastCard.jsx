@@ -1,6 +1,5 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import "./PodcastCard.css"
-import { PodcastContext } from '../../state/PodcastContext'
 
 const PodcastCard = ({podcast}) => {
 

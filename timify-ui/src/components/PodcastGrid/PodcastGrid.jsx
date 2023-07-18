@@ -5,8 +5,6 @@ import PodcastCard from '../PodcastCard/PodcastCard'
 
 const PodcastGrid = ({podcastsByGenre}) => {
 
-  console.log(podcastsByGenre)
-
   return (
     <div className="podcastGrid">
       {podcastsByGenre && Object.entries(podcastsByGenre).map(([genre, podcasts]) => (
