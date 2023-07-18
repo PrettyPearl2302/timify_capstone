@@ -53,9 +53,9 @@ app.get('/api/search', async (req, res) => {
 
 //route to get podcast details
 app.get('/api/podcast', async (req, res) => {
-  const {uuid} = req.query
+  const {id} = req.query
   try {
-    const podcasts = await getPodcastSeries(uuid)
+    const podcasts = await getPodcastSeries(id)
     res.json(podcasts);
   }
   catch(err) {

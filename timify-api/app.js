@@ -99,7 +99,6 @@ export async function getPodcastSeries(uuid) {
           episodeNumber
         }
       }
-      }
     }
   `;
 
