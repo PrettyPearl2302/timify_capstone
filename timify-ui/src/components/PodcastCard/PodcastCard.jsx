@@ -5,7 +5,7 @@ import "./PodcastCard.css"
 const PodcastCard = ({podcast}) => {
 
   return (
-    <Link to={'/podcast/${podcast.uuid}'}>
+    <Link to={`/podcast/${podcast.uuid}`}>
     <div onClick={() => (podcast)}>
       <div key={podcast.uuid} className='podcast-each'>
           <img src={podcast.imageUrl} alt={podcast.name} className='cover-image'/>

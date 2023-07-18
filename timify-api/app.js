@@ -81,7 +81,7 @@ export async function getPodcastSeries(uuid) {
         datePublished
         description
         imageUrl
-        genre
+        genres
         seriesType
         copyright
         authorName
@@ -97,7 +97,6 @@ export async function getPodcastSeries(uuid) {
           duration
           seasonNumber
           episodeNumber
-          podcastSeries
         }
       }
       }

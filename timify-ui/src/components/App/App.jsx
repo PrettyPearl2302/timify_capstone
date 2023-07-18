@@ -28,6 +28,7 @@ function App() {
   return (
     <div className="app">
         <Router>
+          <Search />
             <Routes>
                 <Route
                     path="/"
