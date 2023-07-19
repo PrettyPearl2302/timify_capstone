@@ -11,7 +11,7 @@ import SequelizeStoreInit from 'connect-session-sequelize';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'http://localhost:5173',
   credentials: true
 }));
 app.use(express.json()); // Middleware for parsing JSON bodies from HTTP requests

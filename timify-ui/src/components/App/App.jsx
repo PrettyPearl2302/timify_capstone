@@ -32,10 +32,7 @@ function App() {
        <UserContext.Provider value={{ user, updateUser }}>
         <Router>
             <Routes>
-                <Route
-                    path="/"
-                    element={<Home />}
-                />
+                <Route path="/" element={user ? <Home /> : <LoginForm />} /> 
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/podcast/:id" element={<PodcastDetail />} />
