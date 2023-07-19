@@ -6,6 +6,7 @@ import './PodcastDetail.css'
 function PodcastDetail () {
 
     const [podcastInfo, setPodcastInfo] = useState([])
+    const [episodes, setEpisodes] = useState([])
 
     const {id} = useParams();
 
@@ -14,7 +15,8 @@ function PodcastDetail () {
             try {
                 const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
                 setPodcastInfo(response.data);
-                console.log(response)
+                setEpisodes(response.data.episodes)
+                console.log(response.data.episodes)
             }
             catch (err) {
                 console.error(err);
@@ -33,8 +35,16 @@ function PodcastDetail () {
                 <div className="pd-description">{podcastInfo.description}</div> 
                 <div className="pd-genre">{podcastInfo.genre}</div>
                 <div className="pd-series-type">{podcastInfo.seriesType}</div>
+            </div>
 
-
+            <div className="episodes">
+                <div>
+                    {episodes.map((episode => (
+                        <div key={episode.uuid}>
+                            <div>{episode.name}</div>
+                        </div>
+                    )))}
+                </div>      
             </div>
 
             
