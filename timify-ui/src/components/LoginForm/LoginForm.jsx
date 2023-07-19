@@ -14,7 +14,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      // Make the login API request
+
       const response = await fetch(`http://localhost:3000/users/login`, {
         method: 'POST',
         headers: {
@@ -28,17 +28,15 @@ const LoginForm = () => {
         const data = await response.json();
         const loggedInUser = data.user;
 
-        // Update the user context
         updateUser(loggedInUser);
 
-        // Navigate to the home page after successful login
         navigate('/');
       } else {
-        // Handle the login failure case
+
         alert('Login failed');
       }
     } catch (error) {
-      // Handle any network or API request errors
+        
       alert('Login failed: ' + error);
     }
   };

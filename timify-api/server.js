@@ -1,20 +1,19 @@
-// app.js
 import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
 import morgan from 'morgan';
 import { sequelize } from './database.js';
-import { User, Post } from './models/index.js';
-import userRoutes from './routes/users.js';
+import { User} from './models/index.js';
+import userRoutes from './route/users.js';
 import SequelizeStoreInit from 'connect-session-sequelize';
 
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin:'http://localhost:5173 ',
   credentials: true
 }));
-app.use(express.json()); // Middleware for parsing JSON bodies from HTTP requests
+app.use(express.json());
 app.use(morgan())
 
 const SequelizeStore = SequelizeStoreInit(session.Store);
@@ -40,46 +39,15 @@ sessionStore.sync();
 
 app.use(userRoutes);
 
-// Route to get all posts, with associated users
-app.get('/posts', async (req, res) => {
-  try {
-    const posts = await Post.findAll({
-      include: [{ model: User, as: 'user' }],
-      order: [['createdAt', 'DESC']]
-    });
-    res.json(posts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Route to create a new post
-app.post('/posts', async (req, res) => {
-  try {
-    // Check if user is logged in
-    if (!req.session.user) {
-      return res.status(401).json({ error: 'Unauthorized' });
+app.get('/users', async (req, res) => {
+    try {
+      const users = await User.findAll();
+      res.json(users);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
+  });
 
-    // Retrieve the current user from the session
-    const currentUser = req.session.user;
-
-    // Create the post with the current user ID
-    const post = await Post.create({
-      ...req.body,
-      userId: currentUser.id
-    });
-
-    const postWithUser = await Post.findOne({
-      where: { id: post.id },
-      include: [{ model: User, as: 'user' }]
-    });
-
-    res.status(201).json(postWithUser);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
 
 sequelize.sync({ alter: true })
   .then(() => {
