@@ -11,11 +11,8 @@ function PodcastDetail () {
     useEffect(() => {
         const fetchPodcastInfo = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/podcast?id=${id}`);
-                const data = await response.json
-                console.log(response)
-                console.log(data)
-                setPodcastInfo(data.data);
+                const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
+                setPodcastInfo(response.data);
             }
             catch (err) {
                 console.error(err);
@@ -27,9 +24,9 @@ function PodcastDetail () {
 
     return (
         <div>
-            {podcastInfo.map((podcast) => (
-                <div key={podcast.uuid}>{podcast.name}</div>
-            ))}
+            
+        <div key={podcastInfo.uuid}>{podcastInfo.name}</div>
+            
         </div>
     );
  }
