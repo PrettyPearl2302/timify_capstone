@@ -1,12 +1,9 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { AiOutlineLoading } from "react-icons/ai"
 import "./PodcastGrid.css"
 import PodcastCard from '../PodcastCard/PodcastCard'
-import { PodcastContext } from '../../state/PodcastContext'
 
-const PodcastGrid = () => {
-
-  const { podcastsByGenre } = useContext(PodcastContext);
+const PodcastGrid = ({podcastsByGenre}) => {
 
   return (
     <div className="podcastGrid">

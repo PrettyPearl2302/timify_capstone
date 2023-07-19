@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const SearchResults = () => {
     const [podcastsByGenre, setPodcastsByGenre] = useState([]);
-    const {term}= useParams();
+    const {term} = useParams();
 
     useEffect(() => {
         const fetchPodcasts = async () => {

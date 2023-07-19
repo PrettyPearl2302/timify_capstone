@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { searchForTerm } from './app.js';
+import { getPodcastSeries, searchForTerm } from './app.js';
 const port = process.env.PORT || 5000;
 
 const app = express();
@@ -50,6 +50,20 @@ app.get('/api/search', async (req, res) => {
     res.status(500).send(err.message);
   }
 })
+
+//route to get podcast details
+app.get('/api/podcast', async (req, res) => {
+  const {id} = req.query
+  try {
+    const podcasts = await getPodcastSeries(id)
+    res.json(podcasts);
+  }
+  catch(err) {
+    console.error(err)
+    res.status(500).send(err.message);
+  }
+})
+
 
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
