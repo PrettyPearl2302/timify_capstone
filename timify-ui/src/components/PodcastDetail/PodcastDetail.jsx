@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import './PodcastDetail.css'
 
 function PodcastDetail () {
 
@@ -25,12 +26,12 @@ function PodcastDetail () {
     return (
         <div>
             <div key={podcastInfo.uuid} className="podcast-display">
-                <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='podcast-image'/>
-                <div className="podcast-display-name">{podcastInfo.name}</div> 
-                <div className="podcast-display-author-name">{podcastInfo.authorName}</div> 
-                <div className="podcast display description">{podcastInfo.description}</div> 
-                <div className="podcast-display genre">{podcastInfo.genre}</div>
-                <div className="podcast-display-series-type">{podcastInfo.seriesType}</div>
+                <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='pd-image'/>
+                <div className="pd-name">{podcastInfo.name}</div> 
+                <div className="pd-author-name">{podcastInfo.authorName}</div> 
+                <div className="pd-description">{podcastInfo.description}</div> 
+                <div className="pd-genre">{podcastInfo.genre}</div>
+                <div className="pd-series-type">{podcastInfo.seriesType}</div>
 
 
             </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import SearchResultCard from '../SearchResultCard/SearchResultCard';
+import './SearchResult.css';
 
 
 const SearchResults = () => {
@@ -21,9 +23,9 @@ const SearchResults = () => {
     }, [term]);
 
     return (
-        <div>
+        <div className='all-podcast'>
             {podcastsByGenre.map((podcast) => (
-                <div key={podcast.uuid}>{podcast.name}</div>
+             <SearchResultCard key={podcast.uuid} podcast={podcast} />
             ))}
         </div>
     );
