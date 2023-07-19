@@ -102,11 +102,11 @@ export async function getPodcastSeries(uuid) {
     }
   `;
 
-  const data = await taddyGraphqlRequest(query, { uuid });
-    if (data.errors) {
-      console.error(data.errors)
+  const response = await taddyGraphqlRequest(query, { uuid });
+    if (response.errors) {
+      console.error(response.errors)
     }
-  return data.data.getPodcastSeries; 
+  return response.data.getPodcastSeries; 
 }
 
 
