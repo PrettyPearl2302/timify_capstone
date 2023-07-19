@@ -1,0 +1,73 @@
+[
+    {
+      "first_name": "Emma",
+      "last_name": "Smith",
+      "username": "emma.smith",
+      "email": "emma.smith@example.com",
+      "password": "password1"
+    },
+    {
+      "first_name": "James",
+      "last_name": "Johnson",
+      "username": "james.johnson",
+      "email": "james.johnson@example.com",
+      "password": "password2"
+    },
+    {
+      "first_name": "Olivia",
+      "last_name": "Williams",
+      "username": "olivia.williams",
+      "email": "olivia.williams@example.com",
+      "password": "password3"
+    },
+    {
+      "first_name": "Liam",
+      "last_name": "Brown",
+      "username": "liam.brown",
+      "email": "liam.brown@example.com",
+      "password": "password4"
+    },
+    {
+      "first_name": "Ava",
+      "last_name": "Jones",
+      "username": "ava.jones",
+      "email": "ava.jones@example.com",
+      "password": "password5"
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Davis",
+      "username": "noah.davis",
+      "email": "noah.davis@example.com",
+      "password": "password6"
+    },
+    {
+      "first_name": "Sophia",
+      "last_name": "Taylor",
+      "username": "sophia.taylor",
+      "email": "sophia.taylor@example.com",
+      "password": "password7"
+    },
+    {
+      "first_name": "William",
+      "last_name": "Wilson",
+      "username": "william.wilson",
+      "email": "william.wilson@example.com",
+      "password": "password8"
+    },
+    {
+      "first_name": "Isabella",
+      "last_name": "Miller",
+      "username": "isabella.miller",
+      "email": "isabella.miller@example.com",
+      "password": "password9"
+    },
+    {
+      "first_name": "Mason",
+      "last_name": "Moore",
+      "username": "mason.moore",
+      "email": "mason.moore@example.com",
+      "password": "password10"
+    }
+  ]
+  
