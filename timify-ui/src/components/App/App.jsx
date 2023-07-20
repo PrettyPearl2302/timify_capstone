@@ -5,7 +5,6 @@ import { UserContext } from '../../state/UserContext';
 import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
 import PodcastDetail from '../PodcastDetail/PodcastDetail';
-import EpisodeDetail from '../EpisodeDetail/EpisodeDetail';
 import SearchResults from '../SearchResult/SearchResult';
 import LoginForm from '../LoginForm/LoginForm';
 import Signup from '../SignUp/SignUp';

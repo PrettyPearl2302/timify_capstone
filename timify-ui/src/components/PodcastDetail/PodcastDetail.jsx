@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { AiOutlineLoading } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import EpisodeDetail from "../EpisodeDetail/EpisodeDetail";
 import './PodcastDetail.css'
@@ -27,6 +28,11 @@ function PodcastDetail () {
         fetchPodcastInfo();
     }, [id]);
 
+    if (!podcastInfo) {
+        return <div className="loading-spinner">
+                <AiOutlineLoading className="spinner" />
+               </div>;
+      }
 
     return (
         <div>
@@ -43,9 +49,6 @@ function PodcastDetail () {
                 <div>
                     {episodes.map((episode => (
                         <EpisodeDetail key={episode.uuid} episode={episode} />
-                        // <div key={episode.uuid}>
-                        //     <div>{episode.name}</div>
-                        // </div>
                     )))}
                 </div>      
             </div>
