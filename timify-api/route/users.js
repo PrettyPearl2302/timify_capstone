@@ -8,9 +8,9 @@ const router = express.Router();
 // Route for user registration
 router.post('/users', async (req, res) => {
   const { first_name, last_name, username, password, email } = req.body;
+  const encryptSalt = 10;
 
   try {
-
     const existingUser = await User.findOne({
       where: {
         [Op.or]: [{ username }, { email }]
@@ -22,8 +22,7 @@ router.post('/users', async (req, res) => {
       return res.status(400).json({ error: 'Username or email already exists' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-   
+    const hashedPassword = await bcrypt.hash(password, encryptSalt);
     const newUser = await User.create({ first_name, last_name, username, password: hashedPassword, email });
 
     req.session.user = newUser;
@@ -43,13 +42,11 @@ router.post('/users/login', async (req, res) => {
   try {
 
     const user = await User.findOne({ where: { username } });
-
     if (!user) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
-
     if (!isValidPassword) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }

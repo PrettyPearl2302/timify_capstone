@@ -1,11 +1,14 @@
 import bcrypt from 'bcrypt';
-import {User }from './models/user.js';
+import { User }from './models/user.js';
 
 async function migrateUsers() {
-  try {
+  
+  let encryptSalt = 10;
+  
+    try {
     const users = await User.findAll(); 
     for (const user of users) {
-      const hashedPassword = await bcrypt.hash(user.password, 10);
+      const hashedPassword = await bcrypt.hash(user.password, encryptSalt);
       await user.update({ password: hashedPassword });
     }
 

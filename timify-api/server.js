@@ -9,8 +9,11 @@ import SequelizeStoreInit from 'connect-session-sequelize';
 
 const app = express();
 
+const sessionTime = 365 * 24 * 60 * 60 *1000;
+const sessionKey = 'your-secret-key';
+
 app.use(cors({
-  origin:'http://localhost:5173 ',
+  origin:'http://localhost:5173',
   credentials: true
 }));
 app.use(express.json());
@@ -24,14 +27,14 @@ const sessionStore = new SequelizeStore({
 // Session middleware
 app.use(
   session({
-    secret: 'your-secret-key',
+    secret: sessionKey,
     resave: false,
     saveUninitialized: false,
     store: sessionStore,
     cookie: {
       sameSite: false,
       secure: false,
-      expires: new Date(Date.now() + (365 * 24 * 60 * 60 * 1000)) // 1 year in milliseconds
+      expires: new Date(Date.now() + (sessionTime)) // 1 year in milliseconds
     }
   })
 );
