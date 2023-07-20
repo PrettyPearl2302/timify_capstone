@@ -17,9 +17,7 @@ function PodcastDetail () {
             try {
                 const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
                 setPodcastInfo(response.data);
-                console.log(response.data)
                 setEpisodes(response.data.episodes)
-                console.log(response.data.genres)
             }
             catch (err) {
                 console.error(err);
