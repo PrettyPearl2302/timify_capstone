@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { getPodcastSeries, searchForTerm } from './app.js';
+import { getPodcastEpisode, getPodcastSeries, searchForTerm } from './app.js';
 const port = process.env.PORT || 5000;
 
 const app = express();
@@ -57,6 +57,19 @@ app.get('/api/podcast', async (req, res) => {
   try {
     const podcasts = await getPodcastSeries(id)
     res.json(podcasts);
+  }
+  catch(err) {
+    console.error(err)
+    res.status(500).send(err.message);
+  }
+})
+
+//route to get episode details
+app.get('/api/podcast/episode', async (req, res) => {
+  const {id} = req.query
+  try {
+    const episode = await getPodcastEpisode(id)
+    res.json(episode);
   }
   catch(err) {
     console.error(err)

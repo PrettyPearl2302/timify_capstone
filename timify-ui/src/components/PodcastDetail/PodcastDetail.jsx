@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import EpisodeDetail from "../EpisodeDetail/EpisodeDetail";
 import './PodcastDetail.css'
 
 function PodcastDetail () {
@@ -15,8 +16,9 @@ function PodcastDetail () {
             try {
                 const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
                 setPodcastInfo(response.data);
+                console.log(response.data)
                 setEpisodes(response.data.episodes)
-                console.log(response.data.episodes)
+                console.log(response.data.genres)
             }
             catch (err) {
                 console.error(err);
@@ -40,9 +42,10 @@ function PodcastDetail () {
             <div className="episodes">
                 <div>
                     {episodes.map((episode => (
-                        <div key={episode.uuid}>
-                            <div>{episode.name}</div>
-                        </div>
+                        <EpisodeDetail key={episode.uuid} episode={episode} />
+                        // <div key={episode.uuid}>
+                        //     <div>{episode.name}</div>
+                        // </div>
                     )))}
                 </div>      
             </div>

@@ -110,6 +110,39 @@ export async function getPodcastSeries(uuid) {
 }
 
 
+export async function getPodcastEpisode(uuid) {
+  const query = `
+    query getPodcastEpisode($uuid: ID!) {
+      getPodcastEpisode(uuid: $uuid ) {
+        uuid
+        name
+        datePublished
+        description(shouldStripHtmlTags: true)
+        imageUrl
+        audioUrl
+        episodeType
+        fileLength
+        fileType
+        duration
+        seasonNumber
+        episodeNumber
+        isBlocked
+        podcastSeries{
+          uuid
+          name
+        }
+      }
+    }
+  `;
+
+  const response = await taddyGraphqlRequest(query, { uuid });
+    if (response.errors) {
+      console.error(response.errors)
+    }
+  return response.data.getPodcastEpisode; 
+}
+
+
 
 
 
