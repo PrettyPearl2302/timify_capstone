@@ -9,6 +9,7 @@ import SearchResults from '../SearchResult/SearchResult';
 import LoginForm from '../LoginForm/LoginForm';
 import Signup from '../SignUp/SignUp';
 import EpisodeDisplay from '../EpisodeDisplay/EpisodeDisplay';
+import UserProfile from '../UserProfile/UserProfile';
 
 
 
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/podcast/:id" element={<PodcastDetail />} />
                 <Route path="/podcast/episode/:id" element={<EpisodeDisplay />} />
                 <Route path="/search/:term" element={<SearchResults />} />
+                <Route path="/my-profile/:id" element={<UserProfile />} />
             </Routes>
             <Footer />
         </Router>
