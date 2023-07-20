@@ -1,44 +1,45 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css';
+import { UserContext } from '../../state/UserContext';
 import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
 import PodcastDetail from '../PodcastDetail/PodcastDetail';
 import SearchResults from '../SearchResult/SearchResult';
-import Search from '../Search/Search';
+import LoginForm from '../LoginForm/LoginForm';
+import Signup from '../SignUp/SignUp';
+
 
 
 function App() {
-  const [podcastsByGenre, setPodcastsByGenre] = useState([]);
+  const [user, setUser] = useState(() => {
+  
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const updateUser = (newUser) => {
+    setUser(newUser);
+  };
 
   useEffect(() => {
-    const fetchPodcasts = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/home');
-        const data = await response.json();
-        setPodcastsByGenre(data);
-    
-      } catch(error) {
-        console.error('Error displaying podcasts', error)
-      }
-    }
-    fetchPodcasts();
-  }, []);
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
 
   return (
     <div className="app">
+       <UserContext.Provider value={{ user, updateUser }}>
         <Router>
-          <Search />
             <Routes>
-                <Route
-                    path="/"
-                    element={<Home podcastsByGenre={podcastsByGenre} setPodcastsByGenre={setPodcastsByGenre} />}
-                />
+                <Route path="/" element={user ? <Home /> : <LoginForm />} /> 
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/signup" element={<Signup/>} />
                 <Route path="/podcast/:id" element={<PodcastDetail />} />
                 <Route path="/search/:term" element={<SearchResults />} />
             </Routes>
             <Footer />
         </Router>
+        </UserContext.Provider>
     </div>
   );
 }
