@@ -5,6 +5,12 @@ import PodcastCard from '../PodcastCard/PodcastCard'
 
 const PodcastGrid = ({podcastsByGenre}) => {
 
+  if (!podcastsByGenre) {
+    return <div className="loading-spinner">
+            <AiOutlineLoading className="spinner" />
+           </div>;
+  }
+
   return (
     <div className="podcastGrid">
       {podcastsByGenre && Object.entries(podcastsByGenre).map(([genre, podcasts]) => (

@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { AiOutlineLoading } from "react-icons/ai";
 import { useParams } from "react-router-dom";
+import EpisodeDetail from "../EpisodeDetail/EpisodeDetail";
+import './PodcastDetail.css'
 
 function PodcastDetail () {
 
     const [podcastInfo, setPodcastInfo] = useState([])
+    const [episodes, setEpisodes] = useState([])
 
     const {id} = useParams();
 
@@ -13,6 +17,7 @@ function PodcastDetail () {
             try {
                 const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
                 setPodcastInfo(response.data);
+                setEpisodes(response.data.episodes)
             }
             catch (err) {
                 console.error(err);
@@ -21,18 +26,29 @@ function PodcastDetail () {
         fetchPodcastInfo();
     }, [id]);
 
+    if (!podcastInfo) {
+        return <div className="loading-spinner">
+                <AiOutlineLoading className="spinner" />
+               </div>;
+      }
 
     return (
         <div>
             <div key={podcastInfo.uuid} className="podcast-display">
-                <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='podcast-image'/>
-                <div className="podcast-display-name">{podcastInfo.name}</div> 
-                <div className="podcast-display-author-name">{podcastInfo.authorName}</div> 
-                <div className="podcast display description">{podcastInfo.description}</div> 
-                <div className="podcast-display genre">{podcastInfo.genre}</div>
-                <div className="podcast-display-series-type">{podcastInfo.seriesType}</div>
+                <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='pd-image'/>
+                <div className="pd-name">{podcastInfo.name}</div> 
+                <div className="pd-author-name">{podcastInfo.authorName}</div> 
+                <div className="pd-description">{podcastInfo.description}</div> 
+                <div className="pd-genre">{podcastInfo.genre}</div>
+                <div className="pd-series-type">{podcastInfo.seriesType}</div>
+            </div>
 
-
+            <div className="episodes">
+                <div>
+                    {episodes.map((episode => (
+                        <EpisodeDetail key={episode.uuid} episode={episode} />
+                    )))}
+                </div>      
             </div>
 
             
