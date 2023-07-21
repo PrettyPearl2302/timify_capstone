@@ -26,7 +26,7 @@ async function taddyGraphqlRequest(query, variables) {
       headers: {
         'Content-Type': 'application/json',
         'User-Agent': 'Timify',
-        'X-USER-ID': 484,
+        'X-USER-ID': 494,
         'X-API-KEY': `${process.env.API_KEY}`,
       }
     });
@@ -52,13 +52,6 @@ export async function searchForTerm(term, page, limitPerPage, filterForGenres) {
           description
           imageUrl
           genres
-          itunesInfo{
-            uuid
-            publisherId
-            publisherName
-            baseArtworkUrl
-            baseArtworkUrlOf(size: 640)
-          }
         }
       }
     }
