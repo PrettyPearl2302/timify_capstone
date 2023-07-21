@@ -26,8 +26,6 @@ const Home = () => {
 
   const handleLogout = () => {
     updateUser(null)
-
-
   }
 
   return (
