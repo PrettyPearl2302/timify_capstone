@@ -3,8 +3,6 @@ import { UserContext } from '../../state/UserContext.jsx';
 import "./Home.css"
 import Search from '../Search/Search';
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
-import { Link } from 'react-router-dom';
-import { AiOutlineLoading } from 'react-icons/ai';
 
 const Home = () => {
   const {user, updateUser} = useContext(UserContext)
@@ -24,10 +22,9 @@ const Home = () => {
     fetchPodcasts();
   }, []);
 
+  
   const handleLogout = () => {
     updateUser(null)
-
-
   }
 
   return (
@@ -36,9 +33,7 @@ const Home = () => {
       <div className="user-info">
           {user ? (
             <>
-            <Link to="/my-profile/:id">
               <span>Hi, {user.username}! |</span>
-              </Link>
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (
