@@ -1,7 +1,25 @@
+.podcast-display {
+    display: flex;
+    padding-left: 10%;
+    align-items: center; 
+    gap: 10px; 
+  }
+
 .pd-image{
     height: 10%;
     width: 10%;
     padding-left: 10%;
     padding-right: 10%;
 	padding-left: 10%;
+}
+
+.pd-details {
+    
+    display: flex;
+    flex-direction: column;
+
+  }
+
+.episode-on-pd{
+    padding-left: 10%;
 }

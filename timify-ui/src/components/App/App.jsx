@@ -10,8 +10,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import Signup from '../SignUp/SignUp';
 import EpisodeDisplay from '../EpisodeDisplay/EpisodeDisplay';
 import UserProfile from '../UserProfile/UserProfile';
-
-
+import SideBar from '../SideBar/SideBar';
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -32,6 +31,7 @@ function App() {
     <div className="app">
        <UserContext.Provider value={{ user, updateUser }}>
         <Router>
+          <SideBar />
             <Routes>
                 <Route path="/" element={user ? <Home /> : <LoginForm />} /> 
                 <Route path="/login" element={<LoginForm />} />

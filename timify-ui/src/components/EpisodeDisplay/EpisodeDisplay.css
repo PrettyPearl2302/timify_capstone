@@ -1,0 +1,33 @@
+.episode-display {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+  }
+  
+  .side-by-side {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+  }
+  
+  .pd-image {
+    width: 300px; 
+    height: 300px; 
+  }
+  
+  .episode-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    padding-left: 10%; }
+  
+  .audio-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+  }
+  
+
+  

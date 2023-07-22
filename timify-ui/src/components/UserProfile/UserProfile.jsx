@@ -7,6 +7,7 @@ const UserProfile = () => {
 
   return (
     <>
+    <div>profile-picture</div>
     <div>username: {user.username}</div>
     <div>first name: {user.first_name}</div>
     <div>last name: {user.last_name}</div>

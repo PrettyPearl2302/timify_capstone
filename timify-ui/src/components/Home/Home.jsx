@@ -4,6 +4,7 @@ import "./Home.css"
 import Search from '../Search/Search';
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
 import { Link } from 'react-router-dom';
+import Hero from '../Hero/Hero.jsx';
 
 const Home = () => {
   const {user, updateUser} = useContext(UserContext)
@@ -43,19 +44,20 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <Search />
-      <div className="user-info">
-          {user ? (
-            <>
-            <Link to="/my-profile/:id">
-              <span>Hi, {user.username}! |</span>
-              </Link>
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
-        </div>
+       <Hero />
+        <Search />
+          <div className="user-info">
+              {user ? (
+                <>
+                <Link to="/my-profile/:id">
+                  <span>Hi, {user.username}! |</span>
+                  </Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </div>
       <PodcastGrid podcastsByGenre={podcastsByGenre} setPodcastsByGenre={setPodcastsByGenre} />
     </div>
   )

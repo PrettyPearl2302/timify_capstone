@@ -5,6 +5,15 @@ import PodcastCard from '../PodcastCard/PodcastCard'
 
 const PodcastGrid = ({podcastsByGenre}) => {
 
+  const genreMapping = {
+    PODCASTSERIES_BUSINESS: "Business",
+    PODCASTSERIES_COMEDY: "Comedy",
+    PODCASTSERIES_HEALTH_AND_FITNESS: "Health and Fitness",
+    PODCASTSERIES_NEWS: "News",
+    PODCASTSERIES_SOCIETY_AND_CULTURE: "Society and Culture",
+    PODCASTSERIES_SPORTS: "Sports"
+  };
+
   if (!podcastsByGenre) {
     return <div className="loading-spinner">
             <AiOutlineLoading className="spinner" />
@@ -15,7 +24,7 @@ const PodcastGrid = ({podcastsByGenre}) => {
     <div className="podcastGrid">
       {podcastsByGenre && Object.entries(podcastsByGenre).map(([genre, podcasts]) => (
         <div key={genre} className="genre-section">
-          <h2>{genre}</h2>
+          <h2>{genreMapping[genre]}</h2>
           <div className="podcast-grid">
             {podcasts.map((podcast) => (
               <PodcastCard key={podcast.uuid} podcast={podcast} />

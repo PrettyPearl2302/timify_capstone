@@ -36,15 +36,17 @@ function PodcastDetail () {
         <div>
             <div key={podcastInfo.uuid} className="podcast-display">
                 <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='pd-image'/>
-                <div className="pd-name">{podcastInfo.name}</div> 
-                <div className="pd-author-name">{podcastInfo.authorName}</div> 
-                <div className="pd-description">{podcastInfo.description}</div> 
-                <div className="pd-genre">{podcastInfo.genre}</div>
-                <div className="pd-series-type">{podcastInfo.seriesType}</div>
+                <div className="pd-details">
+                    <div className="pd-name">{podcastInfo.name}</div>
+                    <div className="pd-author-name">{podcastInfo.authorName}</div>
+                    <div className="pd-description">{podcastInfo.description}</div>
+                    <div className="pd-genre">{podcastInfo.genre}</div>
+                    <div className="pd-series-type">{podcastInfo.seriesType}</div>
+                </div>
             </div>
 
             <div className="episodes">
-                <div>
+                <div className="episode-on-pd"> 
                     {episodes.map((episode => (
                         <EpisodeDetail key={episode.uuid} episode={episode} />
                     )))}

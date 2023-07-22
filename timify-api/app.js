@@ -72,7 +72,7 @@ export async function getPodcastSeries(uuid) {
         uuid
         name
         datePublished
-        description
+        description(shouldStripHtmlTags: true)
         imageUrl
         genres
         seriesType
