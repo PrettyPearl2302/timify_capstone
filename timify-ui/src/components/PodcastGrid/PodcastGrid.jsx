@@ -22,9 +22,10 @@ const PodcastGrid = ({podcastsByGenre}) => {
 
   return (
     <div className="podcastGrid">
+       <h2>Explore These Genres...</h2>
       {podcastsByGenre && Object.entries(podcastsByGenre).map(([genre, podcasts]) => (
         <div key={genre} className="genre-section">
-          <h2>{genreMapping[genre]}</h2>
+          <h2 className='section-header'>{genreMapping[genre]}</h2>
           <div className="podcast-grid">
             {podcasts.map((podcast) => (
               <PodcastCard key={podcast.uuid} podcast={podcast} />

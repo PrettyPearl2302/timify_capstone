@@ -1,7 +1,8 @@
 .footer {
     position: relative;
     margin-top: 6rem;
-    background-color: white;
+    background-color: black;
+    color: white;
     display: flex;
     border-bottom: 1px solid gray;
     gap: 100px;

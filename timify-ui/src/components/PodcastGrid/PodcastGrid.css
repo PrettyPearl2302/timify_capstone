@@ -1,9 +1,13 @@
-.podcast-header {
+.section-header {
     margin-top: 6rem;
 }
 
 .podcast-grid {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 50px;
+	gap: 70px;
+}
+
+.section-header {
+	color: #ffee13;
 }

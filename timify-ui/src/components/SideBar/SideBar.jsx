@@ -16,8 +16,8 @@ export default function SideBar() {
 				{isOpen ? <RxHamburgerMenu className="arrow" /> : <RxHamburgerMenu className="arrow" />}
 			</div>
 			<div className="sidebar-content">
-                <div> <Link to="/my-profile/:id">my profile</Link></div>
-                <div><Link to="/">home</Link></div>
+                <div> <Link to="/my-profile/:id" style={{ textDecoration: "none", color: "inherit" }}>my profile</Link></div>
+                <div><Link to="/" style={{ textDecoration: "none", color: "inherit" }}>home</Link></div>
                 <div>settings</div>
                 <div>my notes</div>
                 <div>bookmarked</div>

@@ -5,5 +5,28 @@
 	align-items: center;
 	padding: 2rem 3rem;
     padding-right: 9rem;
-	color: black;
+	color: white;
 }
+
+/* Hero.css */
+
+body, html {
+    /* height: 100%; */
+    margin: 0;
+  }
+  
+  /* .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  } */
+  
+  .hero-container {
+    text-align: center;
+}
+
+.hero-intro{
+    color: #ffee13
+}
+  
