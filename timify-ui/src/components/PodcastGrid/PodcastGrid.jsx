@@ -22,7 +22,7 @@ const PodcastGrid = ({podcastsByGenre}) => {
 
   return (
     <div className="podcastGrid">
-       <h2>Explore These Genres...</h2>
+       <h2 className='grid-heading'>Explore These Genres...</h2>
       {podcastsByGenre && Object.entries(podcastsByGenre).map(([genre, podcasts]) => (
         <div key={genre} className="genre-section">
           <h2 className='section-header'>{genreMapping[genre]}</h2>

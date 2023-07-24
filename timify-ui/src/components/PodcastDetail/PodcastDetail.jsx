@@ -47,6 +47,7 @@ function PodcastDetail () {
 
             <div className="episodes">
                 <div className="episode-on-pd"> 
+                    <div className="episode-header">Episodes</div>
                     {episodes.map((episode => (
                         <EpisodeDetail key={episode.uuid} episode={episode} />
                     )))}

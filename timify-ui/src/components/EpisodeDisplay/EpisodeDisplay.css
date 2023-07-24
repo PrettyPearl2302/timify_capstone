@@ -11,8 +11,8 @@
   }
   
   .pd-image {
-    width: 300px; 
-    height: 300px; 
+    width: 200px; 
+    height: 200px; 
   }
   
   .episode-details {
@@ -20,7 +20,8 @@
     flex-direction: column;
     align-items: center;
     margin-left: 10px;
-    padding-left: 10%; }
+    padding-left: 10%;
+ }
   
   .audio-wrapper {
     display: flex;
@@ -28,6 +29,14 @@
     align-items: center;
     padding-top: 10%;
   }
-  
+
+.text-in {
+    color: antiquewhite;
+    padding-top: 10%;
+}
+
+.episode-on-pd{
+    padding-top: 10%;
+}
 
   

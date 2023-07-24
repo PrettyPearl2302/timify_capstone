@@ -50,7 +50,7 @@ const Home = () => {
               {user ? (
                 <>
                 <Link to="/my-profile/:id" style={{ textDecoration: "none", color: "inherit" }}>
-                  <span>Hi, {user.username}! |</span>
+                  <span className='user-home'>Hi, {user.username}! | </span>
                   </Link>
                   <button onClick={handleLogout}>Logout</button>
                 </>
