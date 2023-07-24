@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import './EpisodeDisplay.css'
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
 
 function EpisodeDisplay () {
 
@@ -36,12 +37,11 @@ function EpisodeDisplay () {
                     <div className="ep-series-type">{episodeInfo.seriesType}</div>
                     </div>
                 </div>
-                <div className="audio-wrapper">
-                    <audio controls>
-                    <source src={episodeInfo.audioUrl} type={episodeInfo.fileType} />
-                    </audio>
-                </div>
-        </div>            
+                <AudioPlayer
+                    audioUrl={episodeInfo.audioUrl}
+                    fileType={episodeInfo.fileType}
+                    />
+            </div>            
         </div>
     );
  }
