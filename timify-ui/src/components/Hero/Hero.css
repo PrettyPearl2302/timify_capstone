@@ -1,0 +1,9 @@
+.hero {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem 3rem;
+    padding-right: 9rem;
+	color: black;
+}

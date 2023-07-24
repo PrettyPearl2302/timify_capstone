@@ -51,6 +51,21 @@ app.get('/users', async (req, res) => {
     }
   });
 
+  
+app.get('/users/:id', async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+)  
+
 
 sequelize.sync({ alter: true })
   .then(() => {

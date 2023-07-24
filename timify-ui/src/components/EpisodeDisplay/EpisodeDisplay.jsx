@@ -25,17 +25,25 @@ function EpisodeDisplay () {
 
     return (
         <div>
-            <div key={episodeInfo.uuid} className="podcast-display">
-            <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className='pd-image'/>
-                <audio controls>
-                  <source src={episodeInfo.audioUrl} type={episodeInfo.fileType} />
-                </audio>
-                <div className="pd-name">{episodeInfo.name}</div> 
-                <div className="pd-author-name">{episodeInfo.authorName}</div> 
-                <div className="pd-description">{episodeInfo.description}</div> 
-                <div className="pd-genre">{episodeInfo.genre}</div>
-                <div className="pd-series-type">{episodeInfo.seriesType}</div>
-            </div>
+            <div key={episodeInfo.uuid} className="episode-display">
+                
+                <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />
+                <div className="episode-details">  
+                    <div>
+                    <div className="ep-name">{episodeInfo.name}</div>
+                    <div className="ep-author-name">{episodeInfo.authorName}</div>
+                    <div className="ep-description">{episodeInfo.description}</div>
+                    <div className="ep-genre">{episodeInfo.genre}</div>
+                    <div className="ep-series-type">{episodeInfo.seriesType}</div>
+                    </div>
+                </div>
+                <div className="audio-wrapper">
+                    <audio controls>
+                    <source src={episodeInfo.audioUrl} type={episodeInfo.fileType} />
+                    </audio>
+                </div>
+</div>
+
 
             
         </div>

@@ -4,7 +4,7 @@ import "./Home.css"
 import Search from '../Search/Search';
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
 import { Link } from 'react-router-dom';
-import { AiOutlineLoading } from 'react-icons/ai';
+import Hero from '../Hero/Hero.jsx';
 
 const Home = () => {
   const {user, updateUser} = useContext(UserContext)
@@ -15,8 +15,22 @@ const Home = () => {
       try {
         const response = await fetch('http://localhost:5000/api/home');
         const data = await response.json();
-        setPodcastsByGenre(data);
-    
+        
+        const filteredData = {};
+
+        for (const Genre in data) {
+          const genrePodcasts = data[Genre];
+
+          const filteredGenrePodcasts = genrePodcasts.filter(podcast => {
+            const hasCoverImage = podcast.imageUrl !== undefined && podcast.imageUrl !== null;
+
+            return hasCoverImage;
+          });
+
+          filteredData[Genre] = filteredGenrePodcasts;
+        }
+        setPodcastsByGenre(filteredData)
+
       } catch(error) {
         console.error('Error displaying podcasts', error)
       }
@@ -30,19 +44,20 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <Search />
-      <div className="user-info">
-          {user ? (
-            <>
-            <Link to="/my-profile/:id">
-              <span>Hi, {user.username}! |</span>
-              </Link>
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
-        </div>
+       <Hero />
+        <Search />
+          <div className="user-info">
+              {user ? (
+                <>
+                <Link to="/my-profile/:id">
+                  <span>Hi, {user.username}! |</span>
+                  </Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </div>
       <PodcastGrid podcastsByGenre={podcastsByGenre} setPodcastsByGenre={setPodcastsByGenre} />
     </div>
   )

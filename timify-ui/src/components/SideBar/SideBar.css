@@ -1,0 +1,107 @@
+.sidebar {
+	width: 500px;
+	background-color: #f1f1f1;
+	height: 100vh;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 16px;
+	z-index: 1000;
+	position: fixed;
+    justify-content: center;
+	left: -440px;
+	top: 0;
+	overflow-y: hidden;
+}
+
+.sidebar.open {
+	transform: translateX(250px);
+	overflow-y: scroll;
+}
+
+.sidebar .toggle-btn {
+	margin-top: 8px;
+	padding: 8px;
+	color: white;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	position: absolute;
+	top: 16px;
+	left: 445px;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease-in-out;
+}
+
+.sidebar.open .toggle-btn {
+	transform: translateX(-250px);
+}
+
+.arrow {
+    position: relative;
+    top: -7px;
+    left: -5px;
+    width: 36px;
+    height: 36px;
+}
+
+.sidebar .toggle-btn p {
+	margin: 0;
+	font-size: 14px;
+}
+
+.sidebar-icons {
+	color: white;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	right: -435px;
+	bottom: -100px;
+	transition: 0.15s;
+	gap: 20px;
+}
+
+.sidebar-icon {
+	width: 40px;
+	height: 40px;
+}
+
+.sidebar-icons.open {
+	scale: 0;
+}
+
+.sidebar-content {
+	margin-top: 16px;
+    color: black;
+    padding-left: 50%;
+}
+
+.sidebar-content h2 {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.sidebar-content ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar-content li {
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 4px;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+
+.sidebar-content li:hover {
+	color: #42a5f5;
+}
