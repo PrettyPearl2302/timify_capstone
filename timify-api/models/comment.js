@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database.js';
 
-export const Comment = sequelize.define('User', {
-    ext: {
+export const Comment = sequelize.define('Comment', {
+    text: {
         type: DataTypes.TEXT, 
         allowNull: false,
       },
