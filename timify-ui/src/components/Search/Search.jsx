@@ -22,7 +22,7 @@ const Search = () => {
               value={term}
               onChange={(e) => setTerm(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className='search-btn'>Search</button>
           </form>
         </div>
       );

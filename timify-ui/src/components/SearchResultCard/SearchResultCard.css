@@ -1,17 +1,30 @@
 .search-podcast-each {
 	width: 240px;
-	height: 400px;
+	height: 310px;
 	object-fit: cover;
-	background-color: #fff;
+	background-color: #212121;
 	border-radius: 4px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	transition: 0.15s;
+	border-radius: 10px
 }
 
+.search-podcast-each:hover {
+	background-color: #fee113; 
+	transform: translateY(-5px); 
+  	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /
+}
 .search-cover-image {
-    height: 50%;
-    width: 80%;
+    height: 200px;
+    width: 200px;
     padding-left: 10%;
     padding-right: 10%;
 	padding-left: 10%;
 }
+
+.search-podcast-text{ 
+	overflow: hidden;
+	color: white;
+	text-align: center;
+	font-size: small;
+  }

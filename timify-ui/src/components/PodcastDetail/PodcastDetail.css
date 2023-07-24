@@ -14,7 +14,7 @@
 }
 
 .pd-details {
-    
+    color: aliceblue;
     display: flex;
     flex-direction: column;
 
@@ -22,4 +22,15 @@
 
 .episode-on-pd{
     padding-left: 10%;
+}
+
+.pd-name{
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffee13;
+}
+
+.episode-header{
+    font-size:20px;
+    color: #ffee13;
 }

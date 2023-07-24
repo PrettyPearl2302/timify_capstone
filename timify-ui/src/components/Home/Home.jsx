@@ -49,8 +49,8 @@ const Home = () => {
           <div className="user-info">
               {user ? (
                 <>
-                <Link to="/my-profile/:id">
-                  <span>Hi, {user.username}! |</span>
+                <Link to="/my-profile/:id" style={{ textDecoration: "none", color: "inherit" }}>
+                  <span className='user-home'>Hi, {user.username}! | </span>
                   </Link>
                   <button onClick={handleLogout}>Logout</button>
                 </>

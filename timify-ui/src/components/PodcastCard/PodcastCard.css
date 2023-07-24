@@ -1,17 +1,31 @@
 .podcast-each {
 	width: 240px;
-	height: 400px;
+	height: 310px;
 	object-fit: cover;
-	background-color: #fff;
-	border-radius: 4px;
+	background-color: #212121;
+	border-radius: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	transition: 0.15s;
+	overflow: hidden;
+}
+
+.podcast-each:hover {
+	background-color: #fee113; 
+	transform: translateY(-5px); 
+  	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /
 }
 
 .cover-image {
-    height: 50%;
-    width: 80%;
+    height: 200px;
+    width: 200px;
     padding-left: 10%;
-    padding-right: 10%;
+    padding-right: 8%;
 	padding-left: 10%;
+}
+
+.podcast-text{ 
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  font-size: small;
 }
