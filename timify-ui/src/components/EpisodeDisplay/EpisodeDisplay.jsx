@@ -40,6 +40,7 @@ function EpisodeDisplay () {
                 <AudioPlayer
                     audioUrl={episodeInfo.audioUrl}
                     fileType={episodeInfo.fileType}
+                    episodeId={episodeInfo.uuid}
                     />
             </div>            
         </div>
