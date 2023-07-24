@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import "./AudioPlayer.css";
 
-const AudioPlayer = () => {
+const AudioPlayer = ({ audioUrl, fileType }) => {
   return (
-    <div>AudioPlayer</div>
-  )
-}
+    <div className="audio-wrapper">
+      <audio controls>
+        <source src={audioUrl} type={fileType} />
+      </audio>
+    </div>
+  );
+};
 
-export default AudioPlayer
+export default AudioPlayer;
