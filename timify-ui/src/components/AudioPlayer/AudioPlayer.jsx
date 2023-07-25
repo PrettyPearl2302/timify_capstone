@@ -2,11 +2,11 @@ import React, { useState , useContext } from "react";
 import { UserContext } from '../../state/UserContext.jsx';
 import "./AudioPlayer.css";
 
-const AudioPlayer = ({ audioUrl, fileType, episodeId}) => {
+const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [commentContent, setCommentContent] = useState("")
     const user = useContext(UserContext);
     const userId = user.id; 
-    const episodeId = {episodeId}
+    const episodeId = episodeD;
 
     const handleChange = (event) => {
         setCommentContent(event.target.value)
@@ -27,6 +27,8 @@ const AudioPlayer = ({ audioUrl, fileType, episodeId}) => {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(commentData),
             });
+
+            console.log(response)
       
             if (response.ok) {
               // Comment successfully posted

@@ -3,13 +3,14 @@ import session from 'express-session';
 import cors from 'cors';
 import morgan from 'morgan';
 import { sequelize } from './database.js';
-import { User} from './models/index.js';
+import { User, Comment } from './models/index.js';
 import userRoutes from './route/users.js';
+import commentRoutes from './route/comments.js';
 import SequelizeStoreInit from 'connect-session-sequelize';
 
 const app = express();
 
-const sessionTime = 365 * 24 * 60 * 60 *1000;
+const sessionTime = 365 * 24 * 60 * 60 *1000; // 1 year in milliseconds
 const sessionKey = 'your-secret-key';
 
 app.use(cors({
@@ -34,14 +35,16 @@ app.use(
     cookie: {
       sameSite: false,
       secure: false,
-      expires: new Date(Date.now() + (sessionTime)) // 1 year in milliseconds
+      expires: new Date(Date.now() + (sessionTime)) 
     }
   })
 );
 sessionStore.sync();
 
 app.use(userRoutes);
+app.use(commentRoutes);
 
+//route to get users
 app.get('/users', async (req, res) => {
     try {
       const users = await User.findAll();
@@ -51,7 +54,7 @@ app.get('/users', async (req, res) => {
     }
   });
 
-  
+//route to get users by id
 app.get('/users/:id', async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
@@ -63,8 +66,16 @@ app.get('/users/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-}
-)  
+});
+
+app.get('/comments', async (req, res) => {
+  try {
+    const comments = await Comment.findAll();
+    res.json(comments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 
 sequelize.sync({ alter: true })
