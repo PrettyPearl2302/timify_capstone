@@ -31,10 +31,8 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             console.log(response)
       
             if (response.ok) {
-              // Comment successfully posted
               console.log("Comment posted successfully!");
             } else {
-              // Error handling in case of a failed POST request.
               console.error("Failed to post comment.");
             }
           } catch (error) {

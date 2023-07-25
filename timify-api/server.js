@@ -3,9 +3,10 @@ import session from 'express-session';
 import cors from 'cors';
 import morgan from 'morgan';
 import { sequelize } from './database.js';
-import { User, Comment } from './models/index.js';
+import { User, Comment, Episode } from './models/index.js';
 import userRoutes from './route/users.js';
 import commentRoutes from './route/comments.js';
+import episodeRoutes from './route/episodes.js'
 import SequelizeStoreInit from 'connect-session-sequelize';
 
 const app = express();
@@ -43,6 +44,7 @@ sessionStore.sync();
 
 app.use(userRoutes);
 app.use(commentRoutes);
+app.use(episodeRoutes);
 
 //route to get users
 app.get('/users', async (req, res) => {
@@ -68,6 +70,7 @@ app.get('/users/:id', async (req, res) => {
   }
 });
 
+//route to get comments
 app.get('/comments', async (req, res) => {
   try {
     const comments = await Comment.findAll();
@@ -76,6 +79,17 @@ app.get('/comments', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+//route to get episodes
+app.get('/episodes', async (req, res) => {
+  try {
+    const episodes = await Episode.findAll();
+    res.json(episodes);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 
 sequelize.sync({ alter: true })
