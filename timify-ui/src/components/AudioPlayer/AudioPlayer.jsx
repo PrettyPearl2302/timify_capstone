@@ -5,6 +5,7 @@ import "./AudioPlayer.css";
 const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [commentContent, setCommentContent] = useState("")
     const [timestamp, setTimestamp] = useState(null)
+    const [commentPosted, setCommentPosted] = useState(false)
     const audioRef = useRef(null)
 
     const user = useContext(UserContext);
@@ -36,8 +37,6 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             timestamp: timestamp,
         }
 
-        console.log(commentData)
-
         try {
             const response = await fetch("http://localhost:3000/comments", {
               method: "POST",
@@ -48,6 +47,8 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             console.log(response)
       
             if (response.ok) {
+                setCommentPosted(true);
+                setCommentContent(""); 
               console.log("Comment posted successfully!");
             } else {
               console.error("Failed to post comment.");
@@ -55,12 +56,13 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
           } catch (error) {
             console.error("Error while posting comment:", error);
           }
-        };
+    };
     
 
 
         return (
             <div>
+              {commentPosted && <p>Your comment was shared.</p>}
             <div className="audio-wrapper">    
             <audio ref={audioRef} controls onTimeUpdate={handleTimeUpdate}>
                 <source src={audioUrl} type={fileType} />
@@ -79,7 +81,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                             onChange={handleChange}
                         />
                     </label>
-                    <button type="submit">Post Comment</button>
+                    <button type="submit">Share</button>
                 </form>
             </div>
             </div>
