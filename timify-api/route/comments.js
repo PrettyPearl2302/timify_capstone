@@ -5,12 +5,13 @@ const router = express.Router();
 
 router.post('/comments', async (req, res) => {
 
-    const { content, userId, episodeId } = req.body; 
+    const { content, userId, episodeId, timestamp } = req.body; 
     try {
       const newComment = await Comment.create({
         content,
         userId,
         episodeId,
+        timestamp,
       });
   
       res.status(201).json({ comment: newComment });
