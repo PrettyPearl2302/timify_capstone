@@ -1,24 +1,54 @@
-import React, { useState , useContext } from "react";
+import React, { useState , useContext, useRef } from "react";
 import { UserContext } from '../../state/UserContext.jsx';
 import "./AudioPlayer.css";
 
 const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [commentContent, setCommentContent] = useState("")
+    const [timestamp, setTimestamp] = useState(null)
+    const [commentPosted, setCommentPosted] = useState(false)
+    const [audioPlaying, setAudioPlaying] = useState(false)
+    const audioRef = useRef(null)
+
     const user = useContext(UserContext);
-    const userId = user.id; 
+    const userId = user.user.id; 
     const episodeId = episodeD;
 
     const handleChange = (event) => {
         setCommentContent(event.target.value)
     };
 
+    const handleTimeUpdate = () => {
+        const currentTime = audioRef.current.currentTime;
+
+        const hours = Math.floor(currentTime / 3600).toString().padStart(2, '0');
+        const minutes = Math.floor((currentTime % 3600) / 60).toString().padStart(2, '0');
+        const seconds = Math.floor(currentTime % 60).toString().padStart(2, '0');
+        const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+        setTimestamp(formattedTime)
+    }
+
+    const handleAudioPlay = () => {
+        setAudioPlaying(true);
+      };
+    
+    const handleAudioPause = () => {
+        setAudioPlaying(false);
+      };
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if(!audioPlaying)
+         {
+            return;
+         }
 
         const commentData = {
             content: commentContent,
             userId: userId,
             episodeId: episodeId,
+            timestamp: timestamp,
         }
 
         try {
@@ -31,6 +61,8 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             console.log(response)
       
             if (response.ok) {
+                setCommentPosted(true);
+                setCommentContent(""); 
               console.log("Comment posted successfully!");
             } else {
               console.error("Failed to post comment.");
@@ -38,31 +70,43 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
           } catch (error) {
             console.error("Error while posting comment:", error);
           }
-        };
+    };
     
 
 
         return (
             <div>
-            <div className="audio-wrapper">
-              <audio controls>
-                <source src={audioUrl} type={fileType} />
-              </audio>
+              {commentPosted && <p>Your comment was shared.</p>}
+            <div className="audio-wrapper">    
+            <audio
+             ref={audioRef} 
+             controls
+             onTimeUpdate={handleTimeUpdate} 
+             onPlay={handleAudioPlay}
+             onPause={handleAudioPause}
+             >
+                <source src={audioUrl} type={fileType} />   
+            </audio>
             </div>
-        
+           
             <div className="comment block">
                 <form className="new-comment-form" onSubmit={handleSubmit}>
                     <label>
                         Leave a comment:
                         <textarea 
                             name="userComment"
-                            placeholder="Your comment goes here..."
+                            placeholder={
+                                audioPlaying
+                                  ? "Your comment goes here..."
+                                  : "Please start the audio to leave a comment."
+                              }
                             rows={4} cols={40} 
                             value={commentContent}
                             onChange={handleChange}
+                            disabled={!audioPlaying}
                         />
                     </label>
-                    <button type="submit">Post Comment</button>
+                    <button type="submit" disabled={!audioPlaying}>Share</button>
                 </form>
             </div>
             </div>

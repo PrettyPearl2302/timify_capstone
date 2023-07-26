@@ -10,4 +10,12 @@ export const Comment = sequelize.define('Comment', {
         type: DataTypes.UUID,
         allowNull: false,
       },
+      timestamp: {
+        type: DataTypes.TIME,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
 });
