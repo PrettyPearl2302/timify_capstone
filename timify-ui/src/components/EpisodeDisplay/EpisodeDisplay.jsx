@@ -40,7 +40,7 @@ function EpisodeDisplay () {
                 </div>
                 <div>
                 <p>Rate this episode:</p>
-                <Rate />
+                <Rate episodeId={episodeInfo.uuid}/>
                 </div>
                 <AudioPlayer
                     audioUrl={episodeInfo.audioUrl}

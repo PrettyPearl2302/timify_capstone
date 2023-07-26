@@ -4,10 +4,10 @@ import { Episode } from '../models/episode.js';
 const router = express.Router();
 
 router.post('/episodes', async (req, res) => {
-  const { uuid } = req.body; // Corrected to use 'uuid' instead of 'episodeId'
+  const { uuid } = req.body; 
   try {
     const newEpisode = await Episode.create({
-      uuid, // Corrected to use 'uuid' instead of 'episodeId'
+      uuid,
     });
 
     res.status(201).json({ episode: newEpisode });
