@@ -13,6 +13,8 @@ const EpisodeDetail = ({episode}) => {
       uuid: episodeId,
     }
 
+    console.log(episodeData)
+
     try {
       const response = await fetch("http://localhost:3000/episodes", {
         method: "POST",
@@ -31,20 +33,17 @@ const EpisodeDetail = ({episode}) => {
   };
 
   return (
-    <>
-    <div onClick={() => (episode)}>
-    <div onClick={handleClick}>
-      <div key={episode.uuid} className='episode-each'>
-        <Link to={`/podcast/episode/${episode.uuid}`} style={{ textDecoration: "none", color: "inherit" }}>
-          <p className="episode-info">{episode.name}</p>
-        </Link> 
-        <p className="episode-info">{episode.episodeNumber}</p>
-        <p className="episode-info">{episode.duration}</p>
-      </div>
-      </div>
+    <div onClick={handleClick} className='episode-each'>
+      <Link
+        to={`/podcast/episode/${episode.uuid}`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <p className="episode-info">{episode.name}</p>
+      </Link>
+      <p className="episode-info">{episode.episodeNumber}</p>
+      <p className="episode-info">{episode.duration}</p>
     </div>
-    </>
-  )
+  );
 }
 
 export default EpisodeDetail
