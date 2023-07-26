@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./EpisodeDetail.css"
+import Rate from '../Rating/Rating.jsx'
 
 const EpisodeDetail = ({episode}) => {
 
@@ -33,6 +34,8 @@ const EpisodeDetail = ({episode}) => {
   };
 
   return (
+
+    <div>
     <div onClick={handleClick} className='episode-each'>
       <Link
         to={`/podcast/episode/${episode.uuid}`}
@@ -42,6 +45,8 @@ const EpisodeDetail = ({episode}) => {
       </Link>
       <p className="episode-info">{episode.episodeNumber}</p>
       <p className="episode-info">{episode.duration}</p>
+    </div>
+    <Rate />
     </div>
   );
 }
