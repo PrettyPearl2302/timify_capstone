@@ -94,10 +94,9 @@ app.get('/episodes', async (req, res) => {
 
 
 //route to get ratings
-app.get('/ratings/:episodeId', async (req, res) => {
+app.get('/ratings', async (req, res) => {
   try {
     const episodeRatings = await Rating.findAll({
-      where: { episodeId },
     });
 
     const totalRatings = episodeRatings.length;
