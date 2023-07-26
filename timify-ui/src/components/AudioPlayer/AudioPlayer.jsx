@@ -6,6 +6,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [commentContent, setCommentContent] = useState("")
     const [timestamp, setTimestamp] = useState(null)
     const [commentPosted, setCommentPosted] = useState(false)
+    const [audioPlaying, setAudioPlaying] = useState(false)
     const audioRef = useRef(null)
 
     const user = useContext(UserContext);
@@ -27,8 +28,21 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
         setTimestamp(formattedTime)
     }
 
+    const handleAudioPlay = () => {
+        setAudioPlaying(true);
+      };
+    
+    const handleAudioPause = () => {
+        setAudioPlaying(false);
+      };
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if(!audioPlaying)
+         {
+            return;
+         }
 
         const commentData = {
             content: commentContent,
@@ -64,8 +78,14 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             <div>
               {commentPosted && <p>Your comment was shared.</p>}
             <div className="audio-wrapper">    
-            <audio ref={audioRef} controls onTimeUpdate={handleTimeUpdate}>
-                <source src={audioUrl} type={fileType} />
+            <audio
+             ref={audioRef} 
+             controls
+             onTimeUpdate={handleTimeUpdate} 
+             onPlay={handleAudioPlay}
+             onPause={handleAudioPause}
+             >
+                <source src={audioUrl} type={fileType} />   
             </audio>
             </div>
            
@@ -75,13 +95,18 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                         Leave a comment:
                         <textarea 
                             name="userComment"
-                            placeholder="Your comment goes here..."
+                            placeholder={
+                                audioPlaying
+                                  ? "Your comment goes here..."
+                                  : "Please start the audio to leave a comment."
+                              }
                             rows={4} cols={40} 
                             value={commentContent}
                             onChange={handleChange}
+                            disabled={!audioPlaying}
                         />
                     </label>
-                    <button type="submit">Share</button>
+                    <button type="submit" disabled={!audioPlaying}>Share</button>
                 </form>
             </div>
             </div>
