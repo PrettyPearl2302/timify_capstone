@@ -88,7 +88,10 @@ app.get('/comments/:episodeId', async (req, res) => {
 
   try {
     const comments = await Comment.findAll({
-      where: { episodeId }
+      where: { episodeId },
+      order: [
+        ['timestamp', 'ASC']
+      ]
     })
     res.status(200).json(comments)
   } catch (error) {
