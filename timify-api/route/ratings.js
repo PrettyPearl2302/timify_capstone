@@ -7,7 +7,7 @@ router.post('/ratings', async (req, res) => {
   const { ratingValue, episodeId, userId } = req.body
 
   try {
-    const newRating = await Rating.upsert({
+    const newRating = await Rating.create({
       ratingValue,
       episodeId,
       userId
@@ -19,5 +19,3 @@ router.post('/ratings', async (req, res) => {
     res.status(500).json({ error: 'Server error' })
   }
 })
-
-export default router
