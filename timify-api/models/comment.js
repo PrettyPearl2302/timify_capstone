@@ -11,7 +11,7 @@ export const Comment = sequelize.define('Comment', {
     allowNull: false
   },
   timestamp: {
-    type: DataTypes.TIME,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   userId: {

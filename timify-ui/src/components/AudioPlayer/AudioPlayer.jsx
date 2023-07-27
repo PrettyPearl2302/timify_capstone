@@ -21,10 +21,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const handleTimeUpdate = () => {
         const currentTime = audioRef.current.currentTime;
 
-        const hours = Math.floor(currentTime / 3600).toString().padStart(2, '0');
-        const minutes = Math.floor((currentTime % 3600) / 60).toString().padStart(2, '0');
-        const seconds = Math.floor(currentTime % 60).toString().padStart(2, '0');
-        const formattedTime = `${hours}:${minutes}:${seconds}`;
+        const formattedTime = Math.round(currentTime);
 
         setTimestamp(formattedTime)
     }
