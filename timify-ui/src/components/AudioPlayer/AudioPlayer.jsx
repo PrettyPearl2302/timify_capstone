@@ -1,4 +1,4 @@
-import React, { useState , useContext, useRef } from "react";
+import React, { useState , useContext, useRef, useEffect} from "react";
 import { UserContext } from '../../state/UserContext.jsx';
 import "./AudioPlayer.css";
 
@@ -12,6 +12,8 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const user = useContext(UserContext);
     const userId = user.user.id; 
     const episodeId = episodeD;
+
+    // let {episodeD} = useParams();
 
     const handleChange = (event) => {
         setCommentContent(event.target.value)
@@ -71,8 +73,26 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             console.error("Error while posting comment:", error);
           }
     };
-    
 
+      const fetchCommentsByEpisodeId = async (episodeId) => {
+        try {
+          const response = await fetch(`http://localhost:3000/comments/${episodeId}`);
+          console.log(response.status)
+          if (response.ok) {
+            const data = await response.json();
+             console.log(data)
+          } else {
+            console.error("Failed to fetch comments");
+          }
+        } catch (error) {
+          console.error("Error while fetching comments", error);
+        }
+      };
+
+      useEffect(() => {
+        fetchCommentsByEpisodeId(episodeId);
+      }, [episodeId]);
+      
 
         return (
             <div>

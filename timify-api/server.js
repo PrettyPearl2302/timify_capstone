@@ -82,6 +82,21 @@ app.get('/comments', async (req, res) => {
   }
 });
 
+//route to get comments by episodeId
+app.get('/comments/:episodeId', async (req, res) => {
+  const { episodeId } = req.params;
+
+  try {
+    const comments = await Comment.findAll({
+      where: { episodeId },
+    });
+    res.status(200).json(comments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 //route to get episodes
 app.get('/episodes', async (req, res) => {
   try {
