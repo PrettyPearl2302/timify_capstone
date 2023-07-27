@@ -21,7 +21,7 @@ const Rate = ({episodeId}) => {
 			  if (data.ratingValue) {
 				setUserRated(true);
 				setRate(data.ratingValue);
-				setDisableRating(true); // Disable rating if user has already rated
+				setDisableRating(true); 
 			  }
 			} else {
 			  console.error("Failed to fetch rating data");
@@ -41,9 +41,6 @@ const Rate = ({episodeId}) => {
 			alert(`You cannot rate this episode because you have rated it before`);
 			return;
 		}
-		// setRate(value);
-		// alert(`Are you sure you want to give ${value} stars?`);
-		// sendRatingData(value);
 
 		alert(`Are you sure you want to give ${value} stars?`);
         setRate(value);
@@ -67,10 +64,6 @@ const Rate = ({episodeId}) => {
 
 	};
 
-	// const sendRatingData = async (value) => {
-
-		
-	// }
 
 	return (
 		<Container>
