@@ -13,7 +13,6 @@ router.post('/comments', async (req, res) => {
         episodeId,
         timestamp,
       });
-      console.log(newComment)
       res.status(201).json({ comment: newComment });
     } catch (error) {
       console.error(error);

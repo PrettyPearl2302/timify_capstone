@@ -12,7 +12,6 @@ router.post('/ratings', async (req, res) => {
         episodeId,
         userId,
       });
-      console.log(newRating)
       res.status(201).json({ rating: newRating });
     } catch (error) {
       console.error(error);

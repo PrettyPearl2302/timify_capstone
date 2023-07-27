@@ -54,7 +54,6 @@ const Rate = ({episodeId}) => {
 	  
 			if (response.ok) {
 				setUserRated(true);
-			  console.log("Rating data posted");
 			} else {
 			  console.error("Failed to post rating data");
 			}
