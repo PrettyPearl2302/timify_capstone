@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import './EpisodeDisplay.css'
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
+import Rate from '../Rating/Rating.jsx'
 
 function EpisodeDisplay () {
 
@@ -36,6 +37,10 @@ function EpisodeDisplay () {
                     <div className="ep-genre">{episodeInfo.genre}</div>
                     <div className="ep-series-type">{episodeInfo.seriesType}</div>
                     </div>
+                </div>
+                <div>
+                <p>Rate this episode:</p>
+                <Rate episodeId={episodeInfo.uuid}/>
                 </div>
                 <AudioPlayer
                     audioUrl={episodeInfo.audioUrl}

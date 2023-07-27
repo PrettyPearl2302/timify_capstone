@@ -3,10 +3,11 @@ import session from 'express-session';
 import cors from 'cors';
 import morgan from 'morgan';
 import { sequelize } from './database.js';
-import { User, Comment, Episode } from './models/index.js';
+import { User, Comment, Episode, Rating } from './models/index.js';
 import userRoutes from './route/users.js';
 import commentRoutes from './route/comments.js';
 import episodeRoutes from './route/episodes.js'
+import ratingRoutes from './route/ratings.js'
 import SequelizeStoreInit from 'connect-session-sequelize';
 
 const app = express();
@@ -45,6 +46,7 @@ sessionStore.sync();
 app.use(userRoutes);
 app.use(commentRoutes);
 app.use(episodeRoutes);
+app.use(ratingRoutes);
 
 //route to get users
 app.get('/users', async (req, res) => {
@@ -90,6 +92,23 @@ app.get('/episodes', async (req, res) => {
   }
 });
 
+
+//route to get ratings
+app.get('/ratings', async (req, res) => {
+  try {
+    const episodeRatings = await Rating.findAll({
+    });
+
+    const totalRatings = episodeRatings.length;
+    const totalRatingSum = episodeRatings.reduce((sum, rating) => sum + rating.ratingValue, 0);
+    const averageRating = totalRatings > 0 ? totalRatingSum / totalRatings : 0;
+
+    res.status(200).json({ averageRating });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 
 sequelize.sync({ alter: true })
