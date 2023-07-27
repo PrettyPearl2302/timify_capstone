@@ -7,13 +7,12 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [timestamp, setTimestamp] = useState(null)
     const [commentPosted, setCommentPosted] = useState(false)
     const [audioPlaying, setAudioPlaying] = useState(false)
+    const [comments, setComments] = useState([{}]);
     const audioRef = useRef(null)
 
     const user = useContext(UserContext);
     const userId = user.user.id; 
     const episodeId = episodeD;
-
-    // let {episodeD} = useParams();
 
     const handleChange = (event) => {
         setCommentContent(event.target.value)
@@ -74,23 +73,25 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
           }
     };
 
-      const fetchCommentsByEpisodeId = async (episodeId) => {
-        try {
-          const response = await fetch(`http://localhost:3000/comments/${episodeId}`);
-          console.log(response.status)
-          if (response.ok) {
-            const data = await response.json();
-             console.log(data)
-          } else {
-            console.error("Failed to fetch comments");
-          }
-        } catch (error) {
-          console.error("Error while fetching comments", error);
-        }
-      };
-
+      
       useEffect(() => {
-        fetchCommentsByEpisodeId(episodeId);
+
+        const fetchCommentsByEpisodeId = async () => {
+          try {
+            const response = await fetch(`http://localhost:3000/comments/${episodeId}`);
+            if (response.ok) {
+              const data = await response.json();
+              setComments(data)
+            } else {
+              console.error("Failed to fetch comments");
+            }
+          } catch (error) {
+            console.error("Error while fetching comments", error);
+          }
+        };
+  
+
+        fetchCommentsByEpisodeId();
       }, [episodeId]);
       
 
@@ -129,6 +130,15 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                     <button type="submit" disabled={!audioPlaying}>Share</button>
                 </form>
             </div>
+
+            <div className="comments">
+            <h2>Comments</h2>
+            <ul>
+              {comments.map((comment) => (
+                <li key={comment.id}>{comment.content} {comment.timestamp}</li>
+              ))}
+            </ul>
+          </div>
             </div>
           );
     };
