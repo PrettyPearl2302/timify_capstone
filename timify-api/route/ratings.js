@@ -1,23 +1,23 @@
-import express from 'express';
-import { Rating } from '../models/rating.js';
+import express from 'express'
+import { Rating } from '../models/rating.js'
 
-const router = express.Router();
+const router = express.Router()
 
 router.post('/ratings', async (req, res) => {
-  const { ratingValue, episodeId, userId } = req.body;
+  const { ratingValue, episodeId, userId } = req.body
 
-    try {
-      const newRating = await Rating.create({
-        ratingValue,
-        episodeId,
-        userId,
-      });
-      console.log(newRating)
-      res.status(201).json({ rating: newRating });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server error' });
-    }
-  });
+  try {
+    const newRating = await Rating.upsert({
+      ratingValue,
+      episodeId,
+      userId
+    })
+    console.log(newRating)
+    res.status(201).json({ rating: newRating })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
 
-  export default router;
+export default router

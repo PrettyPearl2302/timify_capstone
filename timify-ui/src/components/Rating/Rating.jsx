@@ -1,4 +1,4 @@
-import React, { useState , useContext, useEffect } from "react";
+import { useState , useContext, useEffect } from "react";
 import { UserContext } from "../../state/UserContext.jsx";
 import { FaStar } from "react-icons/fa";
 import { Container, Radio, Rating } from "./RatingStyles.jsx";

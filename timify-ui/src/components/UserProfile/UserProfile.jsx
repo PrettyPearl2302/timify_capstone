@@ -1,10 +1,9 @@
-import React from 'react'
 import { UserContext } from '../../state/UserContext'
 import { useContext } from 'react'
 import './UserProfile.css'
 
 const UserProfile = () => {
-  const {user, updateUser} = useContext(UserContext)
+  const {user} = useContext(UserContext)
 
   return (
     <div className='user-profile'>
