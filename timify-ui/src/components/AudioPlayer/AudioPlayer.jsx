@@ -27,6 +27,10 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
         const visibleComments = comments.filter(comment => comment.timestamp <= formattedTime);
           setVisibleComments(visibleComments);
 
+          if (visibleComments.length > 0) {
+            setTimestamp(formattedTime);
+          }
+
         // setTimestamp(formattedTime)
     }
 
