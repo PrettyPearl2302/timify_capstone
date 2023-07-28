@@ -1,4 +1,4 @@
-import React, { useState , useContext, useRef } from "react";
+import { useState , useContext, useRef, useEffect} from "react";
 import { UserContext } from '../../state/UserContext.jsx';
 import "./AudioPlayer.css";
 
@@ -7,10 +7,13 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [timestamp, setTimestamp] = useState(null)
     const [commentPosted, setCommentPosted] = useState(false)
     const [audioPlaying, setAudioPlaying] = useState(false)
+    const [comments, setComments] = useState([{}]);
+    const [visibleComments, setVisibleComments] = useState([]);
     const audioRef = useRef(null)
 
     const user = useContext(UserContext);
     const userId = user.user.id; 
+    const userName = user.user.username;
     const episodeId = episodeD;
 
     const handleChange = (event) => {
@@ -20,12 +23,14 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const handleTimeUpdate = () => {
         const currentTime = audioRef.current.currentTime;
 
-        const hours = Math.floor(currentTime / 3600).toString().padStart(2, '0');
-        const minutes = Math.floor((currentTime % 3600) / 60).toString().padStart(2, '0');
-        const seconds = Math.floor(currentTime % 60).toString().padStart(2, '0');
-        const formattedTime = `${hours}:${minutes}:${seconds}`;
+        const formattedTime = Math.round(currentTime);
 
-        setTimestamp(formattedTime)
+        const visibleComments = comments.filter(comment => comment.timestamp <= formattedTime);
+          setVisibleComments(visibleComments);
+
+          if (visibleComments.length > 0) {
+            setTimestamp(formattedTime);
+          }
     }
 
     const handleAudioPlay = () => {
@@ -47,6 +52,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
         const commentData = {
             content: commentContent,
             userId: userId,
+            userName: userName,
             episodeId: episodeId,
             timestamp: timestamp,
         }
@@ -71,8 +77,27 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             console.error("Error while posting comment:", error);
           }
     };
-    
 
+      
+      useEffect(() => {
+
+        const fetchCommentsByEpisodeId = async () => {
+          try {
+            const response = await fetch(`http://localhost:3000/comments/${episodeId}`);
+            if (response.ok) {
+              const data = await response.json();
+              setComments(data)
+            } else {
+              console.error("Failed to fetch comments");
+            }
+          } catch (error) {
+            console.error("Error while fetching comments", error);
+          }
+        };
+  
+
+        fetchCommentsByEpisodeId();
+      }, []);
 
         return (
             <div>
@@ -109,6 +134,15 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                     <button type="submit" disabled={!audioPlaying}>Share</button>
                 </form>
             </div>
+
+            <div className="comments">
+                <h2>Comments</h2>
+                <ul>
+                  {visibleComments.map((comment) => (
+                    <li key={comment.id}>{comment.userName} {comment.content} {comment.timestamp}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           );
     };

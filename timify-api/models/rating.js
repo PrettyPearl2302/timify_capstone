@@ -1,17 +1,17 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../database.js';
+import { DataTypes } from 'sequelize'
+import { sequelize } from '../database.js'
 
 export const Rating = sequelize.define('Rating', {
-    ratingValue: {
+  ratingValue: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-    episodeId: {
+  episodeId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    allowNull: false
   },
-    userId: {
+  userId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-});
+    allowNull: false
+  }
+})
