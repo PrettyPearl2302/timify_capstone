@@ -67,7 +67,7 @@ function EpisodeDisplay () {
                     <div className="ep-series-type">{episodeInfo.seriesType}</div>
                     </div>
                 </div>
-                <Container>
+                <Container className="rating">
                     <p> <AiTwotoneStar /> {returnedTime}</p>
                     </Container>
                 <div>
