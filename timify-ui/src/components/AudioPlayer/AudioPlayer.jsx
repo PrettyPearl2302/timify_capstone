@@ -8,6 +8,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [commentPosted, setCommentPosted] = useState(false)
     const [audioPlaying, setAudioPlaying] = useState(false)
     const [comments, setComments] = useState([{}]);
+    const [visibleComments, setVisibleComments] = useState([]);
     const audioRef = useRef(null)
 
     const user = useContext(UserContext);
@@ -23,7 +24,10 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
 
         const formattedTime = Math.round(currentTime);
 
-        setTimestamp(formattedTime)
+        const visibleComments = comments.filter(comment => comment.timestamp <= formattedTime);
+          setVisibleComments(visibleComments);
+
+        // setTimestamp(formattedTime)
     }
 
     const handleAudioPlay = () => {
@@ -89,7 +93,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
   
 
         fetchCommentsByEpisodeId();
-      }, [episodeId]);
+      }, []);
       
 
         return (
@@ -129,13 +133,13 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             </div>
 
             <div className="comments">
-            <h2>Comments</h2>
-            <ul>
-              {comments.map((comment) => (
-                <li key={comment.id}>{comment.content} {comment.timestamp}</li>
-              ))}
-            </ul>
-          </div>
+                <h2>Comments</h2>
+                <ul>
+                  {visibleComments.map((comment) => (
+                    <li key={comment.id}>{comment.content}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           );
     };
