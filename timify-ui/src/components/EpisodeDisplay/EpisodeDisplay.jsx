@@ -45,10 +45,12 @@ function EpisodeDisplay () {
             console.error("Error while fetching rating", error);
           }
         };
-  
-
         fetchRatingsByEpisodeId();
       }, [episodeIdef]);
+
+
+      const ratinggg = averageRating;
+      const returnedTime = Math.round(ratinggg * 10) / 10 
 
 
     return (
@@ -65,7 +67,7 @@ function EpisodeDisplay () {
                     </div>
                 </div>
                 <Container>
-                    <p>Average Rating:{averageRating}</p>
+                    <p>Average Rating: {returnedTime}</p>
                     </Container>
                 <div>
                 <p>Rate this episode:</p>
