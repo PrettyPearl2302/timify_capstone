@@ -87,7 +87,6 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             if (response.ok) {
               const data = await response.json();
               setComments(data)
-              console.log(comments)
             } else {
               console.error("Failed to fetch comments");
             }
@@ -99,7 +98,6 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
 
         fetchCommentsByEpisodeId();
       }, []);
-      
 
         return (
             <div>
