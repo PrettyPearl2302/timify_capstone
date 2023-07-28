@@ -5,6 +5,7 @@ import './EpisodeDisplay.css'
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Rate from '../Rating/Rating.jsx'
 import { Container } from "../Rating/RatingStyles.jsx";
+import { AiTwotoneStar } from 'react-icons/ai'
 
 function EpisodeDisplay () {
 
@@ -67,7 +68,7 @@ function EpisodeDisplay () {
                     </div>
                 </div>
                 <Container>
-                    <p>Average Rating: {returnedTime}</p>
+                    <p> <AiTwotoneStar /> {returnedTime}</p>
                     </Container>
                 <div>
                 <p>Rate this episode:</p>
