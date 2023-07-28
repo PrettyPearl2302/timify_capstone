@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import './EpisodeDisplay.css'
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Rate from '../Rating/Rating.jsx'
+import { Container } from "../Rating/RatingStyles.jsx";
 
 function EpisodeDisplay () {
 
     const [episodeInfo, setEpisodeInfo] = useState([])
+    const [averageRating, setAverageRating] = useState(0);
 
     const {id} = useParams();
 
@@ -24,6 +26,30 @@ function EpisodeDisplay () {
         fetchEpisodeInfo();
     }, [id]);
 
+    const episodeIdef = episodeInfo.uuid;
+
+
+    useEffect(() => {
+
+        const fetchRatingsByEpisodeId = async () => {
+          try {
+            const response = await fetch(`http://localhost:3000/ratings/${episodeIdef}`);
+            if (response.ok) {
+              const averageData = await response.json();
+              setAverageRating(averageData)
+              console.log(averageRating)
+            } else {
+              console.error("Failed to fetch rating");
+            }
+          } catch (error) {
+            console.error("Error while fetching rating", error);
+          }
+        };
+  
+
+        fetchRatingsByEpisodeId();
+      }, [episodeIdef]);
+
 
     return (
         <div>
@@ -38,6 +64,9 @@ function EpisodeDisplay () {
                     <div className="ep-series-type">{episodeInfo.seriesType}</div>
                     </div>
                 </div>
+                <Container>
+                    <p>Average Rating:{averageRating}</p>
+                    </Container>
                 <div>
                 <p>Rate this episode:</p>
                 <Rate episodeId={episodeInfo.uuid}/>
