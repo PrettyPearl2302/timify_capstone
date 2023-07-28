@@ -7,13 +7,29 @@ router.post('/ratings', async (req, res) => {
   const { ratingValue, episodeId, userId } = req.body
 
   try {
-    const newRating = await Rating.create({
-      ratingValue,
-      episodeId,
-      userId
+    const existingRating = await Rating.findOne({
+      where: {
+        episodeId,
+        userId
+      }
     })
-    console.log(newRating)
-    res.status(201).json({ rating: newRating })
+
+    if (existingRating) {
+      existingRating.ratingValue = ratingValue
+      await existingRating.save()
+
+      console.log('Rating updated:', existingRating)
+      res.status(200).json({ rating: existingRating })
+    } else {
+      const newRating = await Rating.create({
+        ratingValue,
+        episodeId,
+        userId
+      })
+
+      console.log('New rating created:', newRating)
+      res.status(201).json({ rating: newRating })
+    }
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Server error' })
