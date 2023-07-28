@@ -4,11 +4,12 @@ import { Comment } from '../models/comment.js'
 const router = express.Router()
 
 router.post('/comments', async (req, res) => {
-  const { content, userId, episodeId, timestamp } = req.body
+  const { content, userId, userName, episodeId, timestamp } = req.body
   try {
     const newComment = await Comment.create({
       content,
       userId,
+      userName,
       episodeId,
       timestamp
     })

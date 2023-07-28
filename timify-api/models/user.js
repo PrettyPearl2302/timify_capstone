@@ -1,16 +1,16 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../database.js';
+import { DataTypes } from 'sequelize'
+import { sequelize } from '../database.js'
 
 export const User = sequelize.define('User', {
-    first_name: {
+  first_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-    last_name: {
+  last_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-    username: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -23,4 +23,4 @@ export const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   }
-});
+})

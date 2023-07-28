@@ -13,6 +13,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
 
     const user = useContext(UserContext);
     const userId = user.user.id; 
+    const userName = user.user.username;
     const episodeId = episodeD;
 
     const handleChange = (event) => {
@@ -30,8 +31,6 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
           if (visibleComments.length > 0) {
             setTimestamp(formattedTime);
           }
-
-        // setTimestamp(formattedTime)
     }
 
     const handleAudioPlay = () => {
@@ -53,6 +52,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
         const commentData = {
             content: commentContent,
             userId: userId,
+            userName: userName,
             episodeId: episodeId,
             timestamp: timestamp,
         }
@@ -140,7 +140,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                 <h2>Comments</h2>
                 <ul>
                   {visibleComments.map((comment) => (
-                    <li key={comment.id}>{comment.content}</li>
+                    <li key={comment.id}>{comment.content} {comment.timestamp}</li>
                   ))}
                 </ul>
               </div>
