@@ -3,6 +3,7 @@ import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useState , useContext, useRef, useEffect} from "react";
 import { UserContext } from '../../state/UserContext.jsx';
+import Comments from "../Comments/Comments.jsx";
 import "./AudioPlayer.css";
 
 const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
@@ -106,8 +107,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
       }, []);
 
         return (
-            <div>
-              
+            <div className="ad-page-holder">    
             <div className="audio-wrapper">    
             <audio className="audio"
              ref={audioRef} 
@@ -120,11 +120,12 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             </audio>
             </div>
            
-            <div className="comment block">
+            <div>
                 <form className="new-comment-form" onSubmit={handleSubmit}>
+                  <div className="comment-box">
+                    <p className="comment-text">Leave a comment:</p>
                     <label>
-                        Leave a comment:
-                        <textarea 
+                        <textarea className="actual-box"
                             name="userComment"
                             placeholder={
                                 audioPlaying
@@ -137,19 +138,15 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                             disabled={!audioPlaying}
                         />
                     </label>
-                    <button type="submit" disabled={!audioPlaying}>Share</button>
+                    <button className="buttona" type="submit" disabled={!audioPlaying}>Share</button>
+                    </div>
                 </form>
             </div>
             <ToastContainer />
-
-            <div className="comments">
-                <h2>Comments</h2>
-                <ul>
-                  {visibleComments.map((comment) => (
-                    <li key={comment.id}>{comment.userName} {comment.content} {comment.timestamp}</li>
-                  ))}
-                </ul>
-              </div>
+            
+            <Comments 
+              visibleComments={visibleComments}
+            />
             </div>
           );
     };

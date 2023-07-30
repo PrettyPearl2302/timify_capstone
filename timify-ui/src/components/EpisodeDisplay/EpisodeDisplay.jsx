@@ -52,30 +52,34 @@ function EpisodeDisplay () {
       const returnedRating = Math.round(ratinggg * 10) / 10 
 
 
-    return (
+      return (
         <div>
-            <div key={episodeInfo.uuid} className="episode-display">  
-                  <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />
-                  <p> <AiTwotoneStar /> {returnedRating}</p>
-                <div className="episode-details">  
-                    <div className="text-in">
-                    <div className="ep-duration">{episodeInfo.duration}</div>
-                    <div className="ep-name">{episodeInfo.name}</div>
-                    <div className="ep-description">{episodeInfo.description}</div>
-                    </div>
-                </div>     
+          <div key={episodeInfo.uuid} className="episode-display">
+            <div className="flex-container">
+              <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />
+              <div>
+                <p className="existing-rating"> <AiTwotoneStar className="starrr"/>   {returnedRating}</p>
                 <div>
-                <p>Rate this episode:</p>
-                <Rate episodeId={episodeInfo.uuid}/>
+                  <p className="rate-text">Rate this episode:</p>
+                  <Rate episodeId={episodeInfo.uuid} />
                 </div>
-                <AudioPlayer
-                    audioUrl={episodeInfo.audioUrl}
-                    fileType={episodeInfo.fileType}
-                    episodeD={episodeInfo.uuid}
-                    />
-            </div>            
+              </div>
+            </div>
+            <div className="episode-details">
+              <div className="text-in">
+                <div className="ep-name">{episodeInfo.name}</div>
+                <div className="ep-description">{episodeInfo.description} Listen here: </div>
+              </div>
+            </div>
+            <AudioPlayer
+              audioUrl={episodeInfo.audioUrl}
+              fileType={episodeInfo.fileType}
+              episodeD={episodeInfo.uuid}
+            />
+          </div>
         </div>
-    );
+      );
+      
  }
    
 

@@ -1,12 +1,41 @@
+.actual-box {
+    width: 600px;
+    height: 150px;
+}
+.ad-page-holder {
+    justify-content: center;
+}
+
 .audio {
     width: 700px;
     padding-bottom: 20px;
+    background-color: black;
 }
 
-.comments{
+
+.buttona {
+    width: 200px;
+}
+
+/* .comments{
     color: aliceblue;
 }
 
 .please {
     width: fit-content;
 }
+
+.comment-box {
+   display: flex;
+   flex-direction: column;
+}
+
+.comment-box > * {
+    margin-bottom: 10px;
+}
+*/
+
+.comment-text {
+    color: #ffee13;
+    font-weight: bold;
+} 
