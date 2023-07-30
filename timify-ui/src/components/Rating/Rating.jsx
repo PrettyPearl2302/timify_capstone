@@ -36,9 +36,7 @@ const Rate = ({episodeId}) => {
 
 		if (hasRatedPreviously) {
 			alert(`You have previously rated this episode. Are you sure you want to update it to ${value} stars?`);
-		} else {
-			alert(`Are you sure you want to give ${value} stars?`);
-		}
+		} 
 
 		try {
 			const response = await fetch("http://localhost:3000/ratings", {
