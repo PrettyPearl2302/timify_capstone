@@ -1,7 +1,12 @@
-/* .audio-wrapper{
-    
-} */
+.audio {
+    width: 700px;
+    padding-bottom: 20px;
+}
 
 .comments{
     color: aliceblue;
+}
+
+.please {
+    width: fit-content;
 }

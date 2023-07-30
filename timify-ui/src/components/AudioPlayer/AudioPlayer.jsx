@@ -1,3 +1,6 @@
+import React from "react";
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import { useState , useContext, useRef, useEffect} from "react";
 import { UserContext } from '../../state/UserContext.jsx';
 import "./AudioPlayer.css";
@@ -69,6 +72,9 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
             if (response.ok) {
                 setCommentPosted(true);
                 setCommentContent(""); 
+                toast.success('Your comment was shared.', {
+                  autoClose: 1300,
+                });
               console.log("Comment posted successfully!");
             } else {
               console.error("Failed to post comment.");
@@ -101,9 +107,9 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
 
         return (
             <div>
-              {commentPosted && <p>Your comment was shared.</p>}
+              
             <div className="audio-wrapper">    
-            <audio
+            <audio className="audio"
              ref={audioRef} 
              controls
              onTimeUpdate={handleTimeUpdate} 
@@ -134,6 +140,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                     <button type="submit" disabled={!audioPlaying}>Share</button>
                 </form>
             </div>
+            <ToastContainer />
 
             <div className="comments">
                 <h2>Comments</h2>
