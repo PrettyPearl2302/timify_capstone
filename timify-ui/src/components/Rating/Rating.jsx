@@ -5,8 +5,6 @@ import { Container, Radio, Rating } from "./RatingStyles.jsx";
 
 const Rate = ({episodeId}) => {
 	const [rate, setRate] = useState(0);
-	const [userRated, setUserRated] = useState(false);
-	const [disableRating, setDisableRating] = useState(false);
 
 	const user = useContext(UserContext);
     const userId = user.user.id; 
@@ -19,9 +17,7 @@ const Rate = ({episodeId}) => {
 			if (response.ok) {
 			  const data = await response.json();
 			  if (data.ratingValue) {
-				setUserRated(true);
 				setRate(data.ratingValue);
-				setDisableRating(true); 
 			  }
 			} else {
 			  console.error("Failed to fetch rating data");
@@ -36,14 +32,11 @@ const Rate = ({episodeId}) => {
 
 	
 	const handleRatingChange = async (value) => {
+		const hasRatedPreviously = rate > 0;
 
-		if (userRated) {
-			alert(`You cannot rate this episode because you have rated it before`);
-			return;
-		}
-
-		alert(`Are you sure you want to give ${value} stars?`);
-        setRate(value);
+		if (hasRatedPreviously) {
+			alert(`You have previously rated this episode. Are you sure you want to update it to ${value} stars?`);
+		} 
 
 		try {
 			const response = await fetch("http://localhost:3000/ratings", {
@@ -53,7 +46,7 @@ const Rate = ({episodeId}) => {
 			});
 	  
 			if (response.ok) {
-				setUserRated(true);
+				setRate(value);
 			} else {
 			  console.error("Failed to post rating data");
 			}
@@ -74,7 +67,6 @@ const Rate = ({episodeId}) => {
 							type="radio"
 							value={givenRating}
 							onClick={() => handleRatingChange(givenRating)}
-							disabled={disableRating}
 						/>
 						<Rating>
 							<FaStar

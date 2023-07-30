@@ -115,12 +115,25 @@ app.get('/ratings', async (req, res) => {
   try {
     const episodeRatings = await Rating.findAll({
     })
+    res.status(200).json(episodeRatings)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
 
+app.get('/ratings/:episodeId', async (req, res) => {
+  const { episodeId } = req.params
+
+  try {
+    const episodeRatings = await Rating.findAll({
+      where: { episodeId }
+    })
     const totalRatings = episodeRatings.length
     const totalRatingSum = episodeRatings.reduce((sum, rating) => sum + rating.ratingValue, 0)
     const averageRating = totalRatings > 0 ? totalRatingSum / totalRatings : 0
 
-    res.status(200).json({ averageRating })
+    res.status(200).json(averageRating)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Server error' })

@@ -7,7 +7,7 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
     const [timestamp, setTimestamp] = useState(null)
     const [commentPosted, setCommentPosted] = useState(false)
     const [audioPlaying, setAudioPlaying] = useState(false)
-    const [comments, setComments] = useState([{}]);
+    const [comments, setComments] = useState([]);
     const [visibleComments, setVisibleComments] = useState([]);
     const audioRef = useRef(null)
 
