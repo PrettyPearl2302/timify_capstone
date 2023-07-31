@@ -1,3 +1,32 @@
 .user-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  
+  .user-name,
+  .first-name,
+  .last-name,
+  .email-bar {
+    font-size: 20px;
+    color: #ffee13; 
+    font-weight: bold;
+    padding-top: 20px;
+  }
+  
+.res {
     color: aliceblue;
 }
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Makes the div circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    background-color: yellow; /* Set the background color for the profile picture */
+  }
