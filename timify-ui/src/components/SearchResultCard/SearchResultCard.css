@@ -9,6 +9,35 @@
 	border-radius: 10px
 }
 
+.search-card-container {
+	position: relative;
+}
+
+.test-tooltip {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .tooltip {
+	position: absolute;
+	bottom: -30px; 
+	left: 50%;
+	transform: translateX(-50%);
+	color: rgba(0, 0, 0, 0.8);
+	background-color: #fff;
+	padding: 5px;
+	border-radius: 4px;
+	max-width: 240px;
+	font-size: 10px;
+	white-space: nowrap;
+	z-index: 1;
+  }
+  
+  .test-tooltip:hover .tooltip {
+	visibility: visible;
+  }
+  
+
 .search-podcast-each:hover {
 	background-color: #fee113; 
 	transform: translateY(-5px); 
