@@ -1,14 +1,12 @@
-import { searchForTerm } from './app.js'; 
+/* eslint-disable no-unused-vars */
+import { searchForTerm, searchForEpisode } from './app.js'
 
-async function test() {
+async function test () {
   try {
-  
-    const results = await searchForTerm("", 1, 10, "PODCASTSERIES_BUSINESS");
-
+    const results = await searchForTerm('', 1, 10, 'PODCASTSERIES_BUSINESS')
   } catch (error) {
-   
-    console.error('An error occurred:', error.response);
+    console.error('An error occurred:', error.response)
   }
 }
 
-test();
+test()
