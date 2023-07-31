@@ -15,7 +15,6 @@ const Home = () => {
       try {
         const response = await fetch('http://localhost:5000/api/home');
         const data = await response.json();
-        console.log(data)
         
         const filteredData = {};
 

@@ -16,11 +16,12 @@ export default function SideBar() {
 				{isOpen ? <RxHamburgerMenu className="arrow" /> : <RxHamburgerMenu className="arrow" />}
 			</div>
 			<div className="sidebar-content">
-                <div> <Link to="/my-profile/:id" style={{ textDecoration: "none", color: "inherit" }}>my profile</Link></div>
-                <div><Link to="/" style={{ textDecoration: "none", color: "inherit" }}>home</Link></div>
-                <div>settings</div>
-                <div>my notes</div>
-                <div>bookmarked</div>
+				<div className="header-sidebar">timify +</div>
+                <div className="my-profile"> <Link to="/my-profile/:id" style={{ textDecoration: "none", color: "inherit" }}>my profile</Link></div>
+                <div className="homeee"><Link to="/" style={{ textDecoration: "none", color: "inherit" }}>home</Link></div>
+                <div className="settings">settings</div>
+                <div className="my-notes">my notes</div>
+                <div className="bookmarked">bookmarked</div>
 			</div>
 		</aside>
 	)

@@ -33,10 +33,11 @@ body, html {
 
 .heading {
     font-size: 40px;
+    font-weight: bold;
 }
 
 .tagline {
-  font-size: 10px;
+  font-size: 16px;
   color: aliceblue;
 }
 

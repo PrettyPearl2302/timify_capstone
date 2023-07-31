@@ -78,8 +78,12 @@
 
 .sidebar-content {
 	margin-top: 16px;
-    color: white;
+	margin-bottom: 100px;
+    color: #ffee13;
     padding-left: 50%;
+	font-weight: bold;
+	font-size: 20px;
+	gap: 50px;
 }
 
 .sidebar-content h2 {
@@ -104,4 +108,18 @@
 
 .sidebar-content li:hover {
 	color: #42a5f5;
+}
+
+.my-profile,
+.homeee,
+.settings,
+.my-notes,
+.bookmarked {
+	margin-bottom: 20px;
+}
+
+.header-sidebar {
+	padding-bottom: 30px;
+	font-size: 30px;
+	color: aliceblue;
 }
