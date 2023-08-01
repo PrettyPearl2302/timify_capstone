@@ -143,6 +143,7 @@ export async function searchForEpisode (term1, page1, limitPerPage1) {
           podcastSeries {
             uuid
             name
+            genres
           }
         }
       }

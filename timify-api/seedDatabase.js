@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { User, Rating, Episode } from './models/index.js'
+import { User, Rating, Episode, Podcast } from './models/index.js'
 import { sequelize } from './database.js'
 
 function generateRandomRating (min, max) {
@@ -9,26 +9,38 @@ function generateRandomRating (min, max) {
 const seedFakeRatings = async () => {
   try {
     const episodesResponse = await axios.get('http://localhost:5000/api/getepisodes')
-    const episodes = episodesResponse.data.podcastEpisodes
+    // const episodes = episodesResponse.data.podcastEpisodes
+    const { podcastEpisodes } = episodesResponse.data
 
     await sequelize.sync({ alter: true })
 
-    for (const episode of episodes) {
-      const { uuid } = episode
+    for (const episodeData of podcastEpisodes) {
+      const { uuid, podcastSeries } = episodeData
+      const { uuid: seriesUuid, name: seriesName, genres } = podcastSeries
 
-      await Episode.create({ uuid })
-    }
+      console.log('beginning of seeding method')
+      console.log('podcast uuid: %s, name: %s', seriesUuid, seriesName)
+      const [podcast, created] = await Podcast.findOrCreate({
+        where: { uuid: seriesUuid },
+        defaults: {
+          name: seriesName,
+          genre: genres[0]
+        }
+      })
 
-    console.log('Episodes seeded successfully.')
+      console.log('name: %s', seriesName)
+      await Episode.create({
+        uuid,
+        podcastId: seriesUuid
+      })
 
-    const users = await User.findAll()
-    const userIds = users.map((user) => user.id)
+      console.log('uuid: %s', uuid)
 
-    for (const userId of userIds) {
-      for (const episode of episodes) {
-        const { uuid } = episode
+      const users = await User.findAll()
+      const userIds = users.map((user) => user.id)
+
+      for (const userId of userIds) {
         const ratingValue = generateRandomRating(1, 5)
-        console.log(episode.uuid)
 
         await Rating.create({
           ratingValue,
