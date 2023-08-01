@@ -2,8 +2,9 @@ import express from 'express'
 import session from 'express-session'
 import cors from 'cors'
 import morgan from 'morgan'
+import { Op } from 'sequelize'
 import { sequelize } from './database.js'
-import { User, Comment, Episode, Rating } from './models/index.js'
+import { User, Comment, Episode, Rating, Podcast } from './models/index.js'
 import userRoutes from './route/users.js'
 import commentRoutes from './route/comments.js'
 import episodeRoutes from './route/episodes.js'
@@ -122,6 +123,9 @@ app.get('/ratings', async (req, res) => {
   }
 })
 
+// i need to create a route to get rating by user id by episode id for display on page load. but that's later
+
+// route to get ratings by episddeId
 app.get('/ratings/:episodeId', async (req, res) => {
   const { episodeId } = req.params
 
@@ -134,6 +138,36 @@ app.get('/ratings/:episodeId', async (req, res) => {
     const averageRating = totalRatings > 0 ? totalRatingSum / totalRatings : 0
 
     res.status(200).json(averageRating)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
+
+app.get('/rec-ratings/:userId', async (req, res) => {
+  const { userId } = req.params
+  try {
+    const recRatings = await Rating.findAll({
+      where: {
+        ratingValue: { [Op.gte]: 4 },
+        userId
+      },
+      include: [
+        {
+          model: Episode,
+          as: 'episode',
+          attributes: ['uuid'],
+          include: [
+            {
+              model: Podcast,
+              as: 'podcast',
+              attributes: ['genre']
+            }
+          ]
+        }
+      ]
+    })
+    res.status(200).json(recRatings)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Server error' })
