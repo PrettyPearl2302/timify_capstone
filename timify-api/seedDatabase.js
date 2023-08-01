@@ -9,7 +9,6 @@ function generateRandomRating (min, max) {
 const seedFakeRatings = async () => {
   try {
     const episodesResponse = await axios.get('http://localhost:5000/api/getepisodes')
-    // const episodes = episodesResponse.data.podcastEpisodes
     const { podcastEpisodes } = episodesResponse.data
 
     await sequelize.sync({ alter: true })
@@ -18,8 +17,6 @@ const seedFakeRatings = async () => {
       const { uuid, podcastSeries } = episodeData
       const { uuid: seriesUuid, name: seriesName, genres } = podcastSeries
 
-      console.log('beginning of seeding method')
-      console.log('podcast uuid: %s, name: %s', seriesUuid, seriesName)
       const [podcast, created] = await Podcast.findOrCreate({
         where: { uuid: seriesUuid },
         defaults: {
@@ -28,13 +25,10 @@ const seedFakeRatings = async () => {
         }
       })
 
-      console.log('name: %s', seriesName)
       await Episode.create({
         uuid,
         podcastId: seriesUuid
       })
-
-      console.log('uuid: %s', uuid)
 
       const users = await User.findAll()
       const userIds = users.map((user) => user.id)

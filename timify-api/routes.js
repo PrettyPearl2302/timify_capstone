@@ -45,7 +45,6 @@ app.get('/api/getepisodes', async (req, res) => {
   try {
     const episodes = await searchForEpisode(term1, page1, limitPerPage1)
     res.json(episodes)
-    console.log(episodes)
   } catch (err) {
     console.error(err)
     res.status(500).send(err.message)
