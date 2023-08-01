@@ -1,7 +1,23 @@
-/* .audio-wrapper{
-    
-} */
-
-.comments{
-    color: aliceblue;
+.actual-box {
+    width: 600px;
+    height: 150px;
 }
+.ad-page-holder {
+    justify-content: center;
+}
+
+.audio {
+    width: 700px;
+    padding-bottom: 20px;
+    background-color: black;
+}
+
+
+.buttona {
+    width: 200px;
+}
+
+.comment-text {
+    color: #ffee13;
+    font-weight: bold;
+} 

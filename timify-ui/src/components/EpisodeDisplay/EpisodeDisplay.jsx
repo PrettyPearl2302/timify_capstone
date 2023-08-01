@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import './EpisodeDisplay.css'
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Rate from '../Rating/Rating.jsx'
-import { Container } from "../Rating/RatingStyles.jsx";
 import { AiTwotoneStar } from 'react-icons/ai'
 
 function EpisodeDisplay () {
@@ -38,7 +37,6 @@ function EpisodeDisplay () {
             if (response.ok) {
               const averageData = await response.json();
               setAverageRating(averageData)
-              console.log(averageRating)
             } else {
               console.error("Failed to fetch rating");
             }
@@ -51,37 +49,37 @@ function EpisodeDisplay () {
 
 
       const ratinggg = averageRating;
-      const returnedTime = Math.round(ratinggg * 10) / 10 
+      const returnedRating = Math.round(ratinggg * 10) / 10 
 
 
-    return (
+      return (
         <div>
-            <div key={episodeInfo.uuid} className="episode-display">  
-                  <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />
-                <div className="episode-details">  
-                    <div className="text-in">
-                    <div className="ep-name">{episodeInfo.name}</div>
-                    <div className="ep-author-name">{episodeInfo.authorName}</div>
-                    <div className="ep-description">{episodeInfo.description}</div>
-                    <div className="ep-genre">{episodeInfo.genre}</div>
-                    <div className="ep-series-type">{episodeInfo.seriesType}</div>
-                    </div>
-                </div>
-                <Container className="rating">
-                    <p> <AiTwotoneStar /> {returnedTime}</p>
-                    </Container>
+          <div key={episodeInfo.uuid} className="episode-display">
+            <div className="flex-container">
+              <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />
+              <div>
+                <p className="existing-rating"> <AiTwotoneStar className="starrr"/>   {returnedRating}</p>
                 <div>
-                <p>Rate this episode:</p>
-                <Rate episodeId={episodeInfo.uuid}/>
+                  <p className="rate-text">Rate this episode:</p>
+                  <Rate episodeId={episodeInfo.uuid} />
                 </div>
-                <AudioPlayer
-                    audioUrl={episodeInfo.audioUrl}
-                    fileType={episodeInfo.fileType}
-                    episodeD={episodeInfo.uuid}
-                    />
-            </div>            
+              </div>
+            </div>
+            <div className="episode-details">
+              <div className="text-in">
+                <div className="ep-name">{episodeInfo.name}</div>
+                <div className="ep-description">{episodeInfo.description} Listen here: </div>
+              </div>
+            </div>
+            <AudioPlayer
+              audioUrl={episodeInfo.audioUrl}
+              fileType={episodeInfo.fileType}
+              episodeD={episodeInfo.uuid}
+            />
+          </div>
         </div>
-    );
+      );
+      
  }
    
 
