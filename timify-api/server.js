@@ -169,7 +169,6 @@ app.get('/rec-ratings/:userId', async (req, res) => {
       ]
     })
     res.status(200).json(recRatings)
-    console.log(recRatings.episode)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Server error' })
