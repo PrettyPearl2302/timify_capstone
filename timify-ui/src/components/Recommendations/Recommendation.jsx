@@ -8,15 +8,21 @@ const Recommendation = () => {
   const userId = user.user.id;
   const [podcastGenre, setPodcastGenre] = useState([]);
   const [recommendedPodcasts, setRecommendedPodcasts] = useState([]);
+  const [refPodcastName, setrefPodcastName] = useState([]);
 
   useEffect(() => {
     const fetchRatingsbyValue = async () => {
       try {
         const response = await fetch(`http://localhost:3000/rec-ratings/${userId}`);
         const data = await response.json();
+        console.log(data)
         const genres = data.map((index) => index.episode.podcast.genre);
+        const refName = data.map((index) => index.episode.podcast.name);
+        const uniqueRefNames = Array.from(new Set(refName))
+        console.log(uniqueRefNames)
+        setrefPodcastName(uniqueRefNames)
         const uniqueGenres = Array.from(new Set(genres))
-        console.log(uniqueGenres)
+        console.log(refPodcastName)
         console.log(genres)
         setPodcastGenre(uniqueGenres);
       } catch (error) {
@@ -56,8 +62,11 @@ const Recommendation = () => {
 
   return ( 
   <div>
-  <RecGrid recPodcasts={recommendedPodcasts} />
+  <h2>Your Recommendations</h2>
+  <RecGrid recPodcasts={recommendedPodcasts} refPodcastName={refPodcastName}
+  />
   </div>
+  
   
   )
 };

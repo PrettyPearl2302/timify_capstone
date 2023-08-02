@@ -1,20 +1,23 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+import './RecGrid.css'
 import RecCard from '../RecCard/RecCard'
 
-const RecGrid = ({recPodcasts}) => {
+const RecGrid = ({recPodcasts, refPodcastName}) => {
 
   return (
-    <div>
-    <div className='RecGrid'>
-        {recPodcasts && recPodcasts.map((newPodcasts, index) => (
-            <div key={index} className='podcast-grid'>
-                {newPodcasts.map((podcast) => (
-                      <RecCard key={podcast.uuid} podcast={podcast}/>
+ 
+        <div>
+          {recPodcasts.map((podcastArray, index) => (
+            <Fragment key={refPodcastName[index]}>
+              <h3 className='rec-heading'>Because you liked an episode from {refPodcastName[index]}</h3>
+              <div className='podcast-grid'>
+                {podcastArray.map((podcast) => (
+                  <RecCard key={podcast.uuid} podcast={podcast} />
                 ))}
-            </div>
-        ))}
-    </div>
-    </div>
+              </div>
+            </Fragment>
+          ))}
+        </div>
 
 )
 }

@@ -162,7 +162,7 @@ app.get('/rec-ratings/:userId', async (req, res) => {
             {
               model: Podcast,
               as: 'podcast',
-              attributes: ['genre']
+              attributes: ['genre', 'name']
             }
           ]
         }
