@@ -62,7 +62,7 @@ const Recommendation = () => {
 
   return ( 
   <div>
-  <h2>Your Recommendations</h2>
+  <h2 className='recommendation-heading'> Recommended for You</h2>
   <RecGrid recPodcasts={recommendedPodcasts} refPodcastName={refPodcastName}
   />
   </div>

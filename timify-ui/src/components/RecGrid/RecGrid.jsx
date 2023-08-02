@@ -17,7 +17,7 @@ const RecGrid = ({recPodcasts, refPodcastName}) => {
         <div>
           {recPodcasts.slice(0, iterationIndex + 1).map((podcastArray, index) => (
             <Fragment key={refPodcastName[index]}>
-              <h3 className='rec-heading'>Because you liked an episode from {refPodcastName[index]} :</h3>
+              <h3 className='rec-heading'>...because you liked an episode from {refPodcastName[index]} :</h3>
               <div className='podcast-grid'>
                 {podcastArray.map((podcast) => (
                   <RecCard key={podcast.uuid} podcast={podcast} />
@@ -28,7 +28,7 @@ const RecGrid = ({recPodcasts, refPodcastName}) => {
           {iterationIndex < recPodcasts.length - 1 ? (
             <button onClick={handleLoadMore} className='load-more-btn'>Load More</button>
           ) : (
-            <p>No more podcasts</p>
+            <p className='end-of-recs'>End of recommendations!</p>
           )} 
         </div>
 
