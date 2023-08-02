@@ -1,0 +1,5 @@
+.rec-grid {
+	display: flex;
+	flex-wrap: wrap;
+    gap: 70px;
+}
