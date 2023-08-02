@@ -14,6 +14,7 @@ const SearchResults = () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/search?term=${term}`);
                 setPodcastsByGenre(response.data.podcastSeries);
+                console.log(response)
             }
             catch (err) {
                 console.error(err);

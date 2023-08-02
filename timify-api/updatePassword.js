@@ -1,20 +1,19 @@
-import bcrypt from 'bcrypt';
-import { User }from './models/user.js';
+import bcrypt from 'bcrypt'
+import { User } from './models/user.js'
 
-async function migrateUsers() {
-  
-  let encryptSalt = 10;
-  
-    try {
-    const users = await User.findAll(); 
+async function migrateUsers () {
+  const encryptSalt = 10
+
+  try {
+    const users = await User.findAll()
     for (const user of users) {
-      const hashedPassword = await bcrypt.hash(user.password, encryptSalt);
-      await user.update({ password: hashedPassword });
+      const hashedPassword = await bcrypt.hash(user.password, encryptSalt)
+      await user.update({ password: hashedPassword })
     }
 
-    console.log('User migration completed successfully.');
+    console.log('User migration completed successfully.')
   } catch (error) {
-    console.error('User migration failed:', error);
+    console.error('User migration failed:', error)
   }
 }
-migrateUsers();
+migrateUsers()

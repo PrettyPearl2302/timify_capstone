@@ -1,27 +1,54 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { User} from './models/index.js';
-import { sequelize } from './database.js';
+import axios from 'axios'
+import { User, Rating, Episode, Podcast } from './models/index.js'
+import { sequelize } from './database.js'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+function generateRandomRating (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
 
-const userData = JSON.parse(fs.readFileSync(path.resolve(__dirname, './seeders/users.json'), 'utf8'));
-
-const seedDatabase = async () => {
+const seedFakeRatings = async () => {
   try {
+    const episodesResponse = await axios.get('http://localhost:5000/api/getepisodes')
+    const { podcastEpisodes } = episodesResponse.data
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ alter: true })
 
-    await User.bulkCreate(userData);
-    console.log('User data has been seeded!');
+    for (const episodeData of podcastEpisodes) {
+      const { uuid, podcastSeries } = episodeData
+      const { uuid: seriesUuid, name: seriesName, genres } = podcastSeries
 
-  } catch (error) {
-    console.error('Error seeding data:', error);
+      const [podcast, created] = await Podcast.findOrCreate({
+        where: { uuid: seriesUuid },
+        defaults: {
+          name: seriesName,
+          genre: genres[0]
+        }
+      })
+
+      await Episode.create({
+        uuid,
+        podcastId: seriesUuid
+      })
+
+      const users = await User.findAll()
+      const userIds = users.map((user) => user.id)
+
+      for (const userId of userIds) {
+        const ratingValue = generateRandomRating(1, 5)
+
+        await Rating.create({
+          ratingValue,
+          episodeId: uuid,
+          userId
+        })
+      }
+    }
+    console.log('Fake ratings seeded successfully.')
+  } catch (err) {
+    console.error('Error seeding fake ratings:', err.message)
   } finally {
-    await sequelize.close();
+    await sequelize.close()
   }
-};
+}
 
-seedDatabase();
+seedFakeRatings()
