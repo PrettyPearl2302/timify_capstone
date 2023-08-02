@@ -27,11 +27,17 @@ const Recommendation = () => {
   useEffect(() => {
     const fetchPodcastsByRec = async () => {
       try {
+
+        const allRecommendedPodcasts = []
+
         for (const genre of podcastGenre) {
           const response = await fetch(`http://localhost:5000/api/recommendations?Genre=${genre}`);
-          const data = await response.json();
-          setRecommendedPodcasts(data.podcastSeries)
+          const data = await response.json()
+          allRecommendedPodcasts.push(data.podcastSeries)
+          console.log(data.podcastSeries)
         }
+        setRecommendedPodcasts(allRecommendedPodcasts)
+        console.log(allRecommendedPodcasts)
       } catch (err) {
         console.error(err);
       }

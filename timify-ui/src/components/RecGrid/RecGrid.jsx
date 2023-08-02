@@ -5,10 +5,14 @@ const RecGrid = ({recPodcasts}) => {
 
   return (
     <div>
-    <div className='podcast-grid'>
-        {recPodcasts && recPodcasts.map((podcast) => (
-        <RecCard key={podcast.uuid} podcast={podcast}/>
-    ))}
+    <div className='RecGrid'>
+        {recPodcasts && recPodcasts.map((newPodcasts, index) => (
+            <div key={index} className='podcast-grid'>
+                {newPodcasts.map((podcast) => (
+                      <RecCard key={podcast.uuid} podcast={podcast}/>
+                ))}
+            </div>
+        ))}
     </div>
     </div>
 
