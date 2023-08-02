@@ -14,8 +14,11 @@ const Recommendation = () => {
       try {
         const response = await fetch(`http://localhost:3000/rec-ratings/${userId}`);
         const data = await response.json();
-        const genres = data.map((index) => index.episode.podcast.genre); 
-        setPodcastGenre(genres);
+        const genres = data.map((index) => index.episode.podcast.genre);
+        const uniqueGenres = Array.from(new Set(genres))
+        console.log(uniqueGenres)
+        console.log(genres)
+        setPodcastGenre(uniqueGenres);
       } catch (error) {
         console.error('Error while fetching ratings', error);
       }
