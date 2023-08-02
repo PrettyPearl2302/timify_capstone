@@ -1,5 +1,6 @@
 import { UserContext } from '../../state/UserContext'
 import { useContext } from 'react'
+import Recommendation from '../Recommendations/Recommendation'
 import './UserProfile.css'
 
 const UserProfile = () => {
@@ -19,6 +20,8 @@ const UserProfile = () => {
     <div className='last-name'>last name: <p className='res'>{user.last_name}</p></div>
     <div className='user-name'>username: <p className='res'>{user.username}</p></div>
     <div className='email-bar'>email address attached to this account: <p className='res'>{user.email}</p></div>
+
+    <Recommendation />
     </div>
   )
 }
