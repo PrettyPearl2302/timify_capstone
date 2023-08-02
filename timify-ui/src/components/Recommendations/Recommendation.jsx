@@ -15,15 +15,11 @@ const Recommendation = () => {
       try {
         const response = await fetch(`http://localhost:3000/rec-ratings/${userId}`);
         const data = await response.json();
-        console.log(data)
         const genres = data.map((index) => index.episode.podcast.genre);
         const refName = data.map((index) => index.episode.podcast.name);
         const uniqueRefNames = Array.from(new Set(refName))
-        console.log(uniqueRefNames)
         setrefPodcastName(uniqueRefNames)
         const uniqueGenres = Array.from(new Set(genres))
-        console.log(refPodcastName)
-        console.log(genres)
         setPodcastGenre(uniqueGenres);
       } catch (error) {
         console.error('Error while fetching ratings', error);
@@ -43,10 +39,8 @@ const Recommendation = () => {
           const response = await fetch(`http://localhost:5000/api/recommendations?Genre=${genre}`);
           const data = await response.json()
           allRecommendedPodcasts.push(data.podcastSeries)
-          console.log(data.podcastSeries)
         }
         setRecommendedPodcasts(allRecommendedPodcasts)
-        console.log(allRecommendedPodcasts)
       } catch (err) {
         console.error(err);
       }
@@ -62,9 +56,9 @@ const Recommendation = () => {
 
   return ( 
   <div>
-  <h2 className='recommendation-heading'> Recommended for You</h2>
-  <RecGrid recPodcasts={recommendedPodcasts} refPodcastName={refPodcastName}
-  />
+   <h2 className='recommendation-heading'> Recommended for You</h2>
+    <RecGrid recPodcasts={recommendedPodcasts} refPodcastName={refPodcastName}
+    />
   </div>
   
   
