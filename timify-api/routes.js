@@ -87,6 +87,17 @@ app.get('/api/podcast/episode', async (req, res) => {
   }
 })
 
+// route to get recommended podcasts
+app.get('/api/recommendations', async (req, res) => {
+  const { Genre } = req.query
+  try {
+    const recPodcasts = await searchForTerm('', 1, 10, [Genre])
+    res.json(recPodcasts)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send(err.message)
+  }
+})
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`)
 })

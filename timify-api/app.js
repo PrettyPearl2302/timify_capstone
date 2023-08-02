@@ -26,7 +26,7 @@ async function taddyGraphqlRequest (query, variables) {
       headers: {
         'Content-Type': 'application/json',
         'User-Agent': 'Timify',
-        'X-USER-ID': 494,
+        'X-USER-ID': 529,
         'X-API-KEY': `${process.env.API_KEY}`
       }
     })
