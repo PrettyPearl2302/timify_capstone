@@ -7,7 +7,7 @@ const Recommendation = () => {
   const user = useContext(UserContext);
   const userId = user.user.id;
   const [podcastGenre, setPodcastGenre] = useState([]);
-  const [recommededPodcasts, setRecommendedPodcasts] = useState([]);
+  const [recommendedPodcasts, setRecommendedPodcasts] = useState([]);
 
   useEffect(() => {
     const fetchRatingsbyValue = async () => {
@@ -47,8 +47,7 @@ const Recommendation = () => {
 
   return ( 
   <div>
-  <div>Recommendation</div>
-  <RecGrid recPodcasts={recommededPodcasts} />
+  <RecGrid recPodcasts={recommendedPodcasts} />
   </div>
   
   )
