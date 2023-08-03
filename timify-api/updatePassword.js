@@ -7,7 +7,7 @@ async function migrateUsers () {
   try {
     const users = await User.findAll()
     for (const user of users) {
-      const hashedPassword = await bcrypt.hash(user.password, encryptSalt)
+      const hashedPassword = await bcrypt.compare(user.password, encryptSalt)
       await user.update({ password: hashedPassword })
     }
 

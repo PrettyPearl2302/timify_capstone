@@ -35,7 +35,7 @@ router.post('/users', async (req, res) => {
 })
 
 // Route for user login
-router.post('/users/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { username, password } = req.body
 
   try {
@@ -50,6 +50,8 @@ router.post('/users/login', async (req, res) => {
     }
 
     req.session.user = user
+
+    console.log(user)
 
     res.json({ user })
   } catch (error) {
