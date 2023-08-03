@@ -1,0 +1,24 @@
+.sign-up {
+    color: #ffee13;
+    font-size: 40px;
+}
+
+.signup-form-container {
+    padding-left: 50%;
+}
+
+.signup-image {
+    width: 350px;
+    height: 300px;
+}
+
+.signup-btn {
+    background-color: #ffee13;
+}
+
+.got-an-account {
+    padding-top: 5%;
+    color: aliceblue;
+    font-size: 15px;
+    font-style: italic;
+}

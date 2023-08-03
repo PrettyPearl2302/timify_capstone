@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { AiOutlineLoading } from "react-icons/ai";
 import SearchResultCard from '../SearchResultCard/SearchResultCard';
+import SideBar from '../SideBar/SideBar';
 import './SearchResult.css';
 
 
@@ -34,10 +35,13 @@ const SearchResults = () => {
 
 
     return (
-        <div className='all-podcast'>
-            {podcastsByGenre.map((podcast) => (
-             <SearchResultCard key={podcast.uuid} podcast={podcast} />
-            ))}
+        <div>
+            <SideBar />
+            <div className='all-podcast'>
+                {podcastsByGenre.map((podcast) => (
+                <SearchResultCard key={podcast.uuid} podcast={podcast} />
+                ))}
+            </div>
         </div>
     );
 }

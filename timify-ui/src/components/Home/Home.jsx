@@ -5,6 +5,7 @@ import Search from '../Search/Search';
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
 import { Link } from 'react-router-dom';
 import Hero from '../Hero/Hero.jsx';
+import SideBar from '../SideBar/SideBar.jsx';
 import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 const Home = () => {
@@ -54,6 +55,7 @@ const Home = () => {
 
   return (
     <div className='home'>
+      <SideBar />
        <Hero />
         <Search />
           <div className="user-info">

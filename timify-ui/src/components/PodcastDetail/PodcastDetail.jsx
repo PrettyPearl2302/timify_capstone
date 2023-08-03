@@ -3,6 +3,7 @@ import axios from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import EpisodeDetail from "../EpisodeDetail/EpisodeDetail";
+import SideBar from "../SideBar/SideBar";
 import './PodcastDetail.css'
 
 
@@ -40,6 +41,7 @@ function PodcastDetail () {
 
     return (
         <div>
+            <SideBar />
             <div key={podcastInfo.uuid} className="podcast-display">
                 <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='pd-image'/>
                 <div className="pd-details">

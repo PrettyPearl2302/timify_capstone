@@ -13,6 +13,6 @@
 .loading-state {
     color: aliceblue;
     font-size: 50px;
-    justify-content: center;
+    position: relative;
     font-weight: bold;
 }

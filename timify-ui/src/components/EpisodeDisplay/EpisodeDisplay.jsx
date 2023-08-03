@@ -5,6 +5,7 @@ import './EpisodeDisplay.css'
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Rate from '../Rating/Rating.jsx'
 import { AiTwotoneStar } from 'react-icons/ai'
+import SideBar from "../SideBar/SideBar";
 
 function EpisodeDisplay () {
 
@@ -54,6 +55,7 @@ function EpisodeDisplay () {
 
       return (
         <div>
+          <SideBar />
           <div key={episodeInfo.uuid} className="episode-display">
             <div className="flex-container">
               <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />
