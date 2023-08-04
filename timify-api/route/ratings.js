@@ -17,7 +17,6 @@ router.post('/ratings', async (req, res) => {
     if (existingRating) {
       existingRating.ratingValue = ratingValue
       await existingRating.save()
-
       res.status(200).json({ rating: existingRating })
     } else {
       const newRating = await Rating.create({
@@ -25,7 +24,6 @@ router.post('/ratings', async (req, res) => {
         episodeId,
         userId
       })
-
       console.log('New rating created:', newRating)
       res.status(201).json({ rating: newRating })
     }

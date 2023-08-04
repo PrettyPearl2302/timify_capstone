@@ -1,5 +1,5 @@
 import express from 'express'
-import { Bookmarked } from '../models/bookmarked'
+import { Bookmarked } from '../models/bookmarked.js'
 
 const router = express.Router()
 
@@ -15,7 +15,7 @@ router.post('/bookmarks', async (req, res) => {
       imageUrl,
       userId
     })
-    res.status(201).json({ bookmark: newBookmark })
+    res.status(201).json({ bookmarked: newBookmark })
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Server error' })

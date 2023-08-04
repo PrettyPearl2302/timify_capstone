@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import "./RecCard.css"
 
 const RecCard = ({podcast}) => {
   const [showTooltip, setShowTooltip] = useState(false);

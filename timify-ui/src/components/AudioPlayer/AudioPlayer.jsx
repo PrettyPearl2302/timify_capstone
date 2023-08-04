@@ -1,5 +1,5 @@
 import React from "react";
-import {ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useState , useContext, useRef, useEffect} from "react";
 import { UserContext } from '../../state/UserContext.jsx';
@@ -76,7 +76,6 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
                 toast.success('Your comment was shared.', {
                   autoClose: 1300,
                 });
-              console.log("Comment posted successfully!");
             } else {
               console.error("Failed to post comment.");
             }

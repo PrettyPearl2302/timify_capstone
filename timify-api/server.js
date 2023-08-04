@@ -4,11 +4,12 @@ import cors from 'cors'
 import morgan from 'morgan'
 import { Op } from 'sequelize'
 import { sequelize } from './database.js'
-import { User, Comment, Episode, Rating, Podcast } from './models/index.js'
+import { User, Comment, Episode, Rating, Podcast, Bookmarked } from './models/index.js'
 import userRoutes from './route/users.js'
 import commentRoutes from './route/comments.js'
 import episodeRoutes from './route/episodes.js'
 import ratingRoutes from './route/ratings.js'
+import bookmarkedRoutes from './route/bookmarks.js'
 import SequelizeStoreInit from 'connect-session-sequelize'
 
 const app = express()
@@ -47,8 +48,9 @@ app.use(userRoutes)
 app.use(commentRoutes)
 app.use(episodeRoutes)
 app.use(ratingRoutes)
+app.use(bookmarkedRoutes)
 
-app.get('/users', async (res) => {
+app.get('/users', async (req, res) => {
   try {
     const users = await User.findAll()
     res.json(users)
@@ -70,7 +72,7 @@ app.get('/users/:id', async (req, res) => {
   }
 })
 
-app.get('/comments', async (res) => {
+app.get('/comments', async (req, res) => {
   try {
     const comments = await Comment.findAll()
     res.json(comments)
@@ -96,7 +98,7 @@ app.get('/comments/:episodeId', async (req, res) => {
   }
 })
 
-app.get('/episodes', async (res) => {
+app.get('/episodes', async (req, res) => {
   try {
     const episodes = await Episode.findAll()
     res.json(episodes)
@@ -105,7 +107,7 @@ app.get('/episodes', async (res) => {
   }
 })
 
-app.get('/ratings', async (res) => {
+app.get('/ratings', async (req, res) => {
   try {
     const episodeRatings = await Rating.findAll({
     })
@@ -158,6 +160,20 @@ app.get('/rec-ratings/:userId', async (req, res) => {
       ]
     })
     res.status(200).json(recRatings)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
+
+app.get('/bookmarks/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  try {
+    const userBookmarks = await Bookmarked.findAll({
+      where: { userId }
+    })
+    res.status(200).json(userBookmarks)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Server error' })

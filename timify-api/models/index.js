@@ -18,4 +18,4 @@ Episode.hasMany(Rating, { as: 'ratings', foreignKey: 'episodeId' })
 User.hasMany(Bookmarked, { as: 'bookmarks', foreignKey: 'userId' })
 Bookmarked.belongsTo(User, { as: 'user', foreignKey: 'userId' })
 
-export { User, Episode, Comment, Rating, Podcast }
+export { User, Episode, Comment, Rating, Podcast, Bookmarked }
