@@ -35,12 +35,8 @@ function EpisodeDisplay () {
         const fetchRatingsByEpisodeId = async () => {
           try {
             const response = await fetch(`http://localhost:3000/ratings/${episodeIdef}`);
-            if (response.ok) {
               const averageData = await response.json();
               setAverageRating(averageData)
-            } else {
-              console.error("Failed to fetch rating");
-            }
           } catch (error) {
             console.error("Error while fetching rating", error);
           }

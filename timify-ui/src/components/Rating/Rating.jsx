@@ -1,7 +1,6 @@
 import { useState , useContext, useEffect } from "react";
 import { UserContext } from "../../state/UserContext.jsx";
 import { FaStar } from "react-icons/fa";
-// import './Rating.css';
 import { Container, Radio, Rating } from "./RatingStyles";
 
 const Rate = ({episodeId}) => {

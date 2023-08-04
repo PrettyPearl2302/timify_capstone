@@ -8,8 +8,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// routes to get podcasts for home page display
-app.get('/api/home', async (req, res) => {
+app.get('/api/home', async (res) => {
   const term = ''
   const page = 1
   const limitPerPage = 10
@@ -37,8 +36,7 @@ app.get('/api/home', async (req, res) => {
   }
 })
 
-// route to get episode ids for seeding
-app.get('/api/getepisodes', async (req, res) => {
+app.get('/api/getepisodes', async (res) => {
   const term1 = ''
   const page1 = 1
   const limitPerPage1 = 25
@@ -51,7 +49,6 @@ app.get('/api/getepisodes', async (req, res) => {
   }
 })
 
-// route to get podcast from search query
 app.get('/api/search', async (req, res) => {
   const { term } = req.query
   try {
@@ -63,7 +60,6 @@ app.get('/api/search', async (req, res) => {
   }
 })
 
-// route to get podcast details
 app.get('/api/podcast', async (req, res) => {
   const { id } = req.query
   try {
@@ -75,7 +71,6 @@ app.get('/api/podcast', async (req, res) => {
   }
 })
 
-// route to get episode details
 app.get('/api/podcast/episode', async (req, res) => {
   const { id } = req.query
   try {
@@ -87,7 +82,6 @@ app.get('/api/podcast/episode', async (req, res) => {
   }
 })
 
-// route to get recommended podcasts
 app.get('/api/recommendations', async (req, res) => {
   const { Genre } = req.query
   try {

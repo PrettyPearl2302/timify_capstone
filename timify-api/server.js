@@ -13,7 +13,7 @@ import SequelizeStoreInit from 'connect-session-sequelize'
 
 const app = express()
 
-const sessionTime = 365 * 24 * 60 * 60 * 1000 // 1 year in milliseconds
+const sessionTime = 365 * 24 * 60 * 60 * 1000
 const sessionKey = 'your-secret-key'
 
 app.use(cors({
@@ -28,7 +28,6 @@ const sessionStore = new SequelizeStore({
   db: sequelize
 })
 
-// Session middleware
 app.use(
   session({
     secret: sessionKey,
@@ -49,8 +48,7 @@ app.use(commentRoutes)
 app.use(episodeRoutes)
 app.use(ratingRoutes)
 
-// route to get users
-app.get('/users', async (req, res) => {
+app.get('/users', async (res) => {
   try {
     const users = await User.findAll()
     res.json(users)
@@ -59,7 +57,6 @@ app.get('/users', async (req, res) => {
   }
 })
 
-// route to get users by id
 app.get('/users/:id', async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id)
@@ -73,8 +70,7 @@ app.get('/users/:id', async (req, res) => {
   }
 })
 
-// route to get comments
-app.get('/comments', async (req, res) => {
+app.get('/comments', async (res) => {
   try {
     const comments = await Comment.findAll()
     res.json(comments)
@@ -83,7 +79,6 @@ app.get('/comments', async (req, res) => {
   }
 })
 
-// route to get comments by episodeId
 app.get('/comments/:episodeId', async (req, res) => {
   const { episodeId } = req.params
 
@@ -101,8 +96,7 @@ app.get('/comments/:episodeId', async (req, res) => {
   }
 })
 
-// route to get episodes
-app.get('/episodes', async (req, res) => {
+app.get('/episodes', async (res) => {
   try {
     const episodes = await Episode.findAll()
     res.json(episodes)
@@ -111,8 +105,7 @@ app.get('/episodes', async (req, res) => {
   }
 })
 
-// route to get ratings
-app.get('/ratings', async (req, res) => {
+app.get('/ratings', async (res) => {
   try {
     const episodeRatings = await Rating.findAll({
     })
@@ -123,9 +116,6 @@ app.get('/ratings', async (req, res) => {
   }
 })
 
-// i need to create a route to get rating by user id by episode id for display on page load. but that's later
-
-// route to get ratings by episddeId
 app.get('/ratings/:episodeId', async (req, res) => {
   const { episodeId } = req.params
 
@@ -144,7 +134,6 @@ app.get('/ratings/:episodeId', async (req, res) => {
   }
 })
 
-// route to get rating values by user id
 app.get('/rec-ratings/:userId', async (req, res) => {
   const { userId } = req.params
   try {

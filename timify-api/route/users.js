@@ -5,7 +5,6 @@ import { Op } from 'sequelize'
 
 const router = express.Router()
 
-// Route for user registration
 router.post('/users', async (req, res) => {
   const { first_name, last_name, username, password, email } = req.body
   const encryptSalt = 10
@@ -34,7 +33,6 @@ router.post('/users', async (req, res) => {
   }
 })
 
-// Route for user login
 router.post('/login', async (req, res) => {
   const { username, password } = req.body
 

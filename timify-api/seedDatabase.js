@@ -17,7 +17,7 @@ const seedFakeRatings = async () => {
       const { uuid, podcastSeries } = episodeData
       const { uuid: seriesUuid, name: seriesName, genres } = podcastSeries
 
-      const [podcast, created] = await Podcast.findOrCreate({
+      await Podcast.findOrCreate({
         where: { uuid: seriesUuid },
         defaults: {
           name: seriesName,

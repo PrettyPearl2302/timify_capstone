@@ -2,15 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40vh; /* Adjust the height as needed */
+    height: 40vh;
   }
   
   .search-input {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 700px; /* Adjust the width as needed */
-    border-radius: 20px; /* Adjust the border-radius for rounded corners */
+    width: 700px; 
+    border-radius: 20px; 
     background-color: #ffffff;
   }
   
@@ -19,14 +19,14 @@
     height: 50%;
     padding: 0.5rem;
     border: none;
-    border-radius: 10px; /* Adjust the border-radius for rounded corners */
+    border-radius: 10px; 
   }
   
   .search-input button {
     margin-left: 0.5rem;
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 10px; /* Adjust the border-radius for rounded corners */
+    border-radius: 10px;
     background-color: #ffee13;
     color: white;
   }
