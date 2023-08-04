@@ -1,5 +1,17 @@
-.rec-grid {
-	display: flex;
-	flex-wrap: wrap;
-    gap: 70px;
+.rec-heading {
+    color: #ffee13;
+    font-style: italic;
+    font-size: 15px;
+}
+
+.podcast-grid {
+    padding-bottom: 40px;
+}
+
+.load-more-btn {
+   align-items: center;
+}
+
+.end-of-recs {
+    color: aliceblue
 }
