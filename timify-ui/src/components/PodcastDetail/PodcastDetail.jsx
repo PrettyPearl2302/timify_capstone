@@ -9,17 +9,15 @@ import EpisodeDetail from "../EpisodeDetail/EpisodeDetail";
 import SideBar from "../SideBar/SideBar";
 import './PodcastDetail.css'
 
-
 function PodcastDetail () {
-
     const [podcastInfo, setPodcastInfo] = useState([])
     const [episodes, setEpisodes] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [bookmarkPosted, setBookmarkPosted] = useState(false)
+    const [bookmarked, setBookmarked] = useState(false)
 
     const user = useContext(UserContext)
     const userId = user.user.id
-
 
     const {id} = useParams();
 
@@ -27,8 +25,9 @@ function PodcastDetail () {
         const fetchPodcastInfo = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
-                setPodcastInfo(response.data);
-                setEpisodes(response.data.episodes)
+                    const data = response.data
+                setPodcastInfo(data);
+                setEpisodes(data.episodes)
                 setIsLoading(false)
             }
             catch (err) {
@@ -40,38 +39,74 @@ function PodcastDetail () {
         fetchPodcastInfo();
     }, [id]);
 
+    useEffect(() => {
+     const fetchUserBookmarks = async () => {
+          try {
+            const response = await fetch(`http://localhost:3000/bookmarks/user/${podcastInfo.uuid}` , {
+                headers: { Authorization: userId },
+            })
+            
+            const data = await response.json()
+            setBookmarked(data.bookmarked);
+          } catch (error) {
+            console.error("Error while fetching bookamrks", error);
+          }
+        };
+
+        if(podcastInfo) {
+            fetchUserBookmarks();
+        }
+      }, [podcastInfo, userId]);
+
+
     const onButtonClick = async (event) => {
         event.preventDefault();
 
-        const bookmarkedData = {
-            podcastId: podcastInfo.uuid,
-            authorName: podcastInfo.authorName,
-            name: podcastInfo.name,
-            genre: podcastInfo.genres[0],
-            description: podcastInfo.description,
-            imageUrl: podcastInfo.imageUrl,
-            userId: userId
-        }
-
         try {
-            const response = await fetch("http://localhost:3000/bookmarks", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(bookmarkedData),
-            })
-            console.log(response)
+                if(bookmarked) {
+                    const response = await fetch(`http://localhost:3000/bookmarks/${podcastInfo.uuid}`, {
+                    method: "DELETE", 
+                    headers: { Authorization: userId }
+                    })
+                    console.log('response', response);
+                    if (response.status === 204) {
+                        setBookmarked(false);
+                        toast.success('Podcast removed from bookmarks', {
+                        autoClose: 1300,
+                        });
+                    } else {
+                        console.error("Failed to unbookmark the podcast.");
+                    }
+                } else {
+                    const bookmarkedData = {
+                        podcastId: podcastInfo.uuid,
+                        authorName: podcastInfo.authorName,
+                        name: podcastInfo.name,
+                        genre: podcastInfo.genres[0],
+                        description: podcastInfo.description,
+                        imageUrl: podcastInfo.imageUrl,
+                        userId: userId
+                    }
+                    
+                    const response = await fetch("http://localhost:3000/bookmarks", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(bookmarkedData),
+                    })
 
-            if (response.ok) {
-                setBookmarkPosted(true)
-                toast.success('Podcast saved successfully', {
-                    autoClose: 1300,
-                })
-            } else {
-                console.error("Failed to post bookmark.");
-              }
-        } catch (error) {
-            console.error("Error while posting bookmark:", error);
-        }
+                if (response.ok) {
+                    setBookmarkPosted(true)
+                    toast.success('Podcast saved successfully', {
+                        autoClose: 1300,
+                    })
+                } else {
+                    console.error("Failed to post bookmark.");
+                }
+                }
+            
+            } catch (error) {
+                console.error("Error while handling bookmark:", error);
+            }
     }
 
     if (isLoading) {
@@ -90,7 +125,7 @@ function PodcastDetail () {
                     <div className="pd-author-name">{podcastInfo.authorName}</div>
                     <div className="pd-description">{podcastInfo.description}</div>
                 </div>
-                <button onClick={onButtonClick}>Bookmark</button>
+                <button onClick={onButtonClick}>{bookmarked ? 'Unbookmark' : 'Bookmark'}</button>
             </div>
             
 
@@ -102,8 +137,7 @@ function PodcastDetail () {
                     )))}
                 </div>      
             </div>
-
-            
+<ToastContainer/>
         </div>
     );
  }

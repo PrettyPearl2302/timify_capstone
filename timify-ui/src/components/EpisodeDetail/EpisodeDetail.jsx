@@ -12,8 +12,6 @@ const EpisodeDetail = ({episode}) => {
       uuid: episodeId,
     }
 
-    console.log(episodeData)
-
     try {
       const response = await fetch("http://localhost:3000/episodes", {
         method: "POST",

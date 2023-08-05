@@ -68,7 +68,6 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
               body: JSON.stringify(commentData),
             });
 
-            console.log(response)
       
             if (response.ok) {
                 setCommentPosted(true);

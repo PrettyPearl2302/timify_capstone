@@ -49,8 +49,6 @@ router.post('/login', async (req, res) => {
 
     req.session.user = user
 
-    console.log(user)
-
     res.json({ user })
   } catch (error) {
     console.error(error)

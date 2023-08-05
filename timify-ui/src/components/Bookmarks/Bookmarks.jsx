@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../state/UserContext'
 import BookmarkGrid from '../BookmarkGrid/BookmarkGrid'
 import './Bookmarks.css'
+import SideBar from '../SideBar/SideBar'
 
 const Bookmarks = () => {
 
@@ -15,7 +16,6 @@ const Bookmarks = () => {
                 const response = await fetch(`http://localhost:3000/bookmarks/${userId}`)
                 const data = await response.json()
                 setBookmarkedPodcasts(data)
-                console.log(data)
             } catch (error) {
                 console.error('Error while fetching ratings', error);
               }
@@ -26,8 +26,11 @@ const Bookmarks = () => {
     
   return (
     <div>
-        <h1>My Bookmarked</h1>
+      <SideBar />
+      <div className='bookmark-display'>
+        <h1 className='bookmark-header'>My Bookmarks</h1>
         <BookmarkGrid bookmarked={bookmarkedPodcasts}/>
+        </div>
         </div>
   )
 }
