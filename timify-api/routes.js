@@ -8,7 +8,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.get('/api/home', async (res) => {
+app.get('/api/home', async (req, res) => {
   const term = ''
   const page = 1
   const limitPerPage = 10
@@ -36,7 +36,7 @@ app.get('/api/home', async (res) => {
   }
 })
 
-app.get('/api/getepisodes', async (res) => {
+app.get('/api/getepisodes', async (req, res) => {
   const term1 = ''
   const page1 = 1
   const limitPerPage1 = 25

@@ -17,11 +17,11 @@ export default function SideBar() {
 			</div>
 			<div className="sidebar-content">
 				<div className="header-sidebar">timify +</div>
-                <div className="my-profile"> <Link to="/my-profile/:id" style={{ textDecoration: "none", color: "inherit" }}>my profile</Link></div>
+                <div className="my-profile"> <Link to="/my-profile" style={{ textDecoration: "none", color: "inherit" }}>my profile</Link></div>
                 <div className="homeee"><Link to="/" style={{ textDecoration: "none", color: "inherit" }}>home</Link></div>
                 <div className="settings">settings</div>
                 <div className="my-notes">my notes</div>
-                <div className="bookmarked">bookmarked</div>
+                <div className="bookmarked"><Link to="/my-bookmarks" style={{ textDecoration: "none", color: "inherit" }}>bookmarked</Link></div>
 			</div>
 		</aside>
 	)

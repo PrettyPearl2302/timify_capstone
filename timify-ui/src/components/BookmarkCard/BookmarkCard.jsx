@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const RecCard = ({ podcast }) => {
-  const [showTooltip, setShowTooltip] = useState(false);
-
+const BookmarkCard = ({ podcast }) => {
   return (
     <Link
-      to={`/podcast/${podcast.uuid}`}
+      to={`/podcast/${podcast.podcastId}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div className="podcast-card-container">
-        <div
-          key={podcast.uuid}
-          className="podcast-each"
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-        >
+        <div key={podcast.podcastId} className="podcast-each">
           <img
             src={podcast.imageUrl}
             alt={podcast.name}
@@ -26,10 +19,9 @@ const RecCard = ({ podcast }) => {
             <p>{podcast.authorName}</p>
           </div>
         </div>
-        {showTooltip && <div className="tooltip"> {podcast.description} </div>}
       </div>
     </Link>
   );
 };
 
-export default RecCard;
+export default BookmarkCard;
