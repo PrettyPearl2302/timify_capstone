@@ -8,6 +8,9 @@ const Rate = ({episodeId}) => {
 
 	const user = useContext(UserContext);
     const userId = user.user.id; 
+	const activeColor = "#ffae42";
+    const inactiveColor = "rgb(192, 192, 192)";
+
 
 	useEffect(() => {
 		const fetchRating = async () => {
@@ -73,8 +76,7 @@ const Rate = ({episodeId}) => {
 							<FaStar
 								color={
 									givenRating < rate || givenRating === rate
-										? "ffae42"
-										: "rgb(192,192,192)"
+										? activeColor : inactiveColor
 								}
 							/>
 						</Rating>

@@ -14,7 +14,7 @@ import SequelizeStoreInit from 'connect-session-sequelize'
 
 const app = express()
 
-const sessionTime = 365 * 24 * 60 * 60 * 1000
+const sessionTime = 365 * 24 * 60 * 60 * 1000 // 1 year in milliseconds
 const sessionKey = 'your-secret-key'
 
 app.use(cors({
