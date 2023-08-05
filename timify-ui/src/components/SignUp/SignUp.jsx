@@ -53,9 +53,10 @@ const Signup = () => {
   return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
+      <img className="signup-image" src="/src/assets/my-logo.png" alt="logo" />
+        <h2 className='sign-up'>Sign Up</h2>
         <div className="form-group">
-          <label htmlFor="first_name">First Name:</label>
+          <label htmlFor="first_name">First Name:  </label>
           <input
             type="text"
             id="first_name"
@@ -65,7 +66,7 @@ const Signup = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="last_name">Last Name:</label>
+          <label htmlFor="last_name">Last Name:  </label>
           <input
             type="text"
             id="last_name"
@@ -75,7 +76,7 @@ const Signup = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Username:  </label>
           <input
             type="text"
             id="username"
@@ -85,7 +86,7 @@ const Signup = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email:  </label>
           <input
             type="email"
             id="email"
@@ -95,7 +96,7 @@ const Signup = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password:  </label>
           <input
             type="password"
             id="password"
@@ -104,9 +105,9 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
-        <p>
-          Already have an account? <Link to="/login">Log In</Link>
+        <button type="submit" className='signup-btn'>Sign Up</button>
+        <p className='got-an-account'>
+          Got an account? <Link to="/login">Log In</Link>
         </p>
       </form>
     </div>

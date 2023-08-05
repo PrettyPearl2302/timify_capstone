@@ -91,12 +91,8 @@ const AudioPlayer = ({ audioUrl, fileType, episodeD}) => {
         const fetchCommentsByEpisodeId = async () => {
           try {
             const response = await fetch(`http://localhost:3000/comments/${episodeId}`);
-            if (response.ok) {
               const data = await response.json();
               setComments(data)
-            } else {
-              console.error("Failed to fetch comments");
-            }
           } catch (error) {
             console.error("Error while fetching comments", error);
           }

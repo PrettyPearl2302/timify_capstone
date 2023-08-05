@@ -3,12 +3,16 @@ import axios from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import EpisodeDetail from "../EpisodeDetail/EpisodeDetail";
+import SideBar from "../SideBar/SideBar";
 import './PodcastDetail.css'
+
 
 function PodcastDetail () {
 
     const [podcastInfo, setPodcastInfo] = useState([])
     const [episodes, setEpisodes] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
 
     const {id} = useParams();
 
@@ -18,22 +22,26 @@ function PodcastDetail () {
                 const response = await axios.get(`http://localhost:5000/api/podcast?id=${id}`);
                 setPodcastInfo(response.data);
                 setEpisodes(response.data.episodes)
+                setIsLoading(false)
             }
             catch (err) {
                 console.error(err);
+                setIsLoading(false)
+                
             }
         };
         fetchPodcastInfo();
     }, [id]);
 
-    if (!podcastInfo) {
-        return <div className="loading-spinner">
-                <AiOutlineLoading className="spinner" />
-               </div>;
+    if (isLoading) {
+        return <div className='loading-state'>
+          <div><AiOutlineLoading /></div>
+          Loading...</div>
       }
 
     return (
         <div>
+            <SideBar />
             <div key={podcastInfo.uuid} className="podcast-display">
                 <img src={podcastInfo.imageUrl} alt={podcastInfo.name} className='pd-image'/>
                 <div className="pd-details">

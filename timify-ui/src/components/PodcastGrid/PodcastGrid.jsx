@@ -1,5 +1,4 @@
 import React from 'react'
-import { AiOutlineLoading } from "react-icons/ai"
 import "./PodcastGrid.css"
 import PodcastCard from '../PodcastCard/PodcastCard'
 
@@ -13,12 +12,6 @@ const PodcastGrid = ({podcastsByGenre}) => {
     PODCASTSERIES_SOCIETY_AND_CULTURE: "Society and Culture",
     PODCASTSERIES_SPORTS: "Sports"
   };
-
-  if (!podcastsByGenre) {
-    return <div className="loading-spinner">
-            <AiOutlineLoading className="spinner" />
-           </div>;
-  }
 
   return (
     <div className="podcastGrid">

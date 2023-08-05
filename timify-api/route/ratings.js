@@ -18,7 +18,6 @@ router.post('/ratings', async (req, res) => {
       existingRating.ratingValue = ratingValue
       await existingRating.save()
 
-      console.log('Rating updated:', existingRating)
       res.status(200).json({ rating: existingRating })
     } else {
       const newRating = await Rating.create({

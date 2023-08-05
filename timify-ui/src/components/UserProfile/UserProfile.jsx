@@ -1,6 +1,7 @@
 import { UserContext } from '../../state/UserContext'
 import { useContext } from 'react'
 import Recommendation from '../Recommendations/Recommendation'
+import SideBar from '../SideBar/SideBar'
 import './UserProfile.css'
 
 const UserProfile = () => {
@@ -12,16 +13,19 @@ const UserProfile = () => {
 
 
   return (
-    <div className='user-profile'>
-    <div className='profile-picture' style={{ backgroundColor: user.username ? 'yellow' : 'gray' }}>
-        {getFirstLetter(user.username)}
-      </div>
-    <div className='first-name'>first name: <p className='res'>{user.first_name}</p></div> 
-    <div className='last-name'>last name: <p className='res'>{user.last_name}</p></div>
-    <div className='user-name'>username: <p className='res'>{user.username}</p></div>
-    <div className='email-bar'>email address attached to this account: <p className='res'>{user.email}</p></div>
+    <div>
+      <SideBar />
+      <div className='user-profile'>
+      <div className='profile-picture' style={{ backgroundColor: user.username ? 'yellow' : 'gray' }}>
+          {getFirstLetter(user.username)}
+        </div>
+      <div className='first-name'>first name: <p className='res'>{user.first_name}</p></div> 
+      <div className='last-name'>last name: <p className='res'>{user.last_name}</p></div>
+      <div className='user-name'>username: <p className='res'>{user.username}</p></div>
+      <div className='email-bar'>email address attached to this account: <p className='res'>{user.email}</p></div>
 
-    <Recommendation />
+      <Recommendation />
+      </div>
     </div>
   )
 }

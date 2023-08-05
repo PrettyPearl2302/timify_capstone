@@ -5,10 +5,13 @@ import Search from '../Search/Search';
 import PodcastGrid from '../PodcastGrid/PodcastGrid'
 import { Link } from 'react-router-dom';
 import Hero from '../Hero/Hero.jsx';
+import SideBar from '../SideBar/SideBar.jsx';
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 const Home = () => {
   const {user, updateUser} = useContext(UserContext)
   const [podcastsByGenre, setPodcastsByGenre] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchPodcasts = async () => {
@@ -30,9 +33,11 @@ const Home = () => {
           filteredData[Genre] = filteredGenrePodcasts;
         }
         setPodcastsByGenre(filteredData)
+        setIsLoading(false)
 
       } catch(error) {
         console.error('Error displaying podcasts', error)
+        setIsLoading(false);
       }
     }
     fetchPodcasts();
@@ -42,8 +47,15 @@ const Home = () => {
     updateUser(null)
   }
 
+  if (isLoading) {
+    return <div className='loading-state'>
+      <div><AiOutlineLoading3Quarters /></div>
+      Loading...</div>
+  }
+
   return (
     <div className='home'>
+      <SideBar />
        <Hero />
         <Search />
           <div className="user-info">

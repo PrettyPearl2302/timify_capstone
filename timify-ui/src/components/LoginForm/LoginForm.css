@@ -1,0 +1,33 @@
+.login-form-container{
+    padding-left: 50%;
+    justify-content: center;
+}
+
+.login-header {
+    color: #ffee13;
+    font-size: 50px;
+
+}
+
+.form-group {
+    padding-bottom: 20px;
+    width: 700px;
+    font-size: 20px;
+    color: aliceblue;
+}
+
+.login-image {
+    width: 250px;
+    height: 200px;
+}
+
+.login-btn {
+    background-color: #ffee13;
+}
+
+.new-here {
+    padding-top: 5%;
+    color: aliceblue;
+    font-size: 15px;
+    font-style: italic;
+}

@@ -5,6 +5,7 @@ import './EpisodeDisplay.css'
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import Rate from '../Rating/Rating.jsx'
 import { AiTwotoneStar } from 'react-icons/ai'
+import SideBar from "../SideBar/SideBar";
 
 function EpisodeDisplay () {
 
@@ -34,12 +35,8 @@ function EpisodeDisplay () {
         const fetchRatingsByEpisodeId = async () => {
           try {
             const response = await fetch(`http://localhost:3000/ratings/${episodeIdef}`);
-            if (response.ok) {
               const averageData = await response.json();
               setAverageRating(averageData)
-            } else {
-              console.error("Failed to fetch rating");
-            }
           } catch (error) {
             console.error("Error while fetching rating", error);
           }
@@ -54,6 +51,7 @@ function EpisodeDisplay () {
 
       return (
         <div>
+          <SideBar />
           <div key={episodeInfo.uuid} className="episode-display">
             <div className="flex-container">
               <img src={episodeInfo.imageUrl} alt={episodeInfo.name} className="pd-image" />

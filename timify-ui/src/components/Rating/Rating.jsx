@@ -1,7 +1,7 @@
 import { useState , useContext, useEffect } from "react";
 import { UserContext } from "../../state/UserContext.jsx";
 import { FaStar } from "react-icons/fa";
-import './Rating.css';
+import { Container, Radio, Rating } from "./RatingStyles";
 
 const Rate = ({episodeId}) => {
 	const [rate, setRate] = useState(0);
@@ -58,18 +58,18 @@ const Rate = ({episodeId}) => {
 
 
 	return (
-		<div className="stars">
+		<Container>
 			{[...Array(5)].map((item, index) => {
 				const givenRating = index + 1;
 				return (
 					<label key={index}>
-						<div className="radio"
+						<Radio
 							type="radio"
 							value={givenRating}
 							onClick={() => handleRatingChange(givenRating)}
-						>
-						</div>
-						<div className="rating">
+						/>
+						
+							<Rating>
 							<FaStar
 								color={
 									givenRating < rate || givenRating === rate
@@ -77,11 +77,11 @@ const Rate = ({episodeId}) => {
 										: "rgb(192,192,192)"
 								}
 							/>
-						</div>
+						</Rating>
 					</label>
 				);
 			})}
-		</div>
+		</Container>
 	);
 };
 

@@ -1,11 +1,16 @@
 .home {
     background-color: black;
     padding-left: 10%;
-
-
 }
 
 .user-home{
     color: aliceblue;
     font-size: 18px;
+}
+
+.loading-state {
+    color: aliceblue;
+    font-size: 50px;
+    position: relative;
+    font-weight: bold;
 }
