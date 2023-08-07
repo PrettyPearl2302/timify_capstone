@@ -207,7 +207,6 @@ app.get("/bookmarks/user/:podcastId", async (req, res) => {
     if (bookmark) {
       return res.status(200).json({ bookmarked: true });
     } else {
-      // If the bookmark does not exist, return a success response with bookmarked: false
       return res.status(200).json({ bookmarked: false });
     }
   } catch (error) {
@@ -215,6 +214,31 @@ app.get("/bookmarks/user/:podcastId", async (req, res) => {
     res
       .status(500)
       .json({ error: "An error occurred while checking the bookmark" });
+  }
+});
+
+app.get("/rating/user/:episodeId", async (req, res) => {
+  const { episodeId } = req.params;
+  const userId = req.headers.authorization;
+
+  try {
+    const rated = await Rating.findOne({
+      where: {
+        episodeId,
+        userId,
+      },
+    });
+
+    if (rated) {
+      return res.status(200).json({ ratingValue: rated.ratingValue });
+    } else {
+      return res.status(200).json({ ratingValue: false });
+    }
+  } catch (error) {
+    console.error("Error checking rating", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while checking the rating" });
   }
 });
 
