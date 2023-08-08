@@ -17,8 +17,16 @@ const Recommendation = () => {
           `http://localhost:3000/rec-ratings/${userId}`
         );
         const data = await response.json();
-        const genres = data.map((index) => index.episode.podcast.genre);
-        const refName = data.map((index) => index.episode.podcast.name);
+
+        const filteredData = data.filter(
+          (index) => index?.episode?.podcast !== null
+        );
+
+        const genres = filteredData.map((index) => {
+          return index?.episode?.podcast?.genre;
+        });
+
+        const refName = filteredData.map((index) => index.episode.podcast.name);
         const uniqueRefNames = Array.from(new Set(refName));
         setrefPodcastName(uniqueRefNames);
         const uniqueGenres = Array.from(new Set(genres));
