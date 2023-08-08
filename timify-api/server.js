@@ -1,3 +1,5 @@
+/* eslint-disable semi */
+/* eslint-disable comma-dangle */
 import express from "express";
 import session from "express-session";
 import cors from "cors";
@@ -189,7 +191,6 @@ app.get("/bookmarks/:userId", async (req, res) => {
   }
 });
 
-// route to get info on whether a bookmark record exists for this podcast id with this user id
 app.get("/bookmarks/user/:podcastId", async (req, res) => {
   const { podcastId } = req.params;
   const userId = req.headers.authorization;
@@ -205,7 +206,6 @@ app.get("/bookmarks/user/:podcastId", async (req, res) => {
     if (bookmark) {
       return res.status(200).json({ bookmarked: true });
     } else {
-      // If the bookmark does not exist, return a success response with bookmarked: false
       return res.status(200).json({ bookmarked: false });
     }
   } catch (error) {

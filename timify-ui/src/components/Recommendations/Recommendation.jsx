@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { UserContext } from '../../state/UserContext.jsx';
-import './Recommendation.css';
-import RecGrid from '../RecGrid/RecGrid.jsx';
+import React, { useEffect, useContext, useState } from "react";
+import { UserContext } from "../../state/UserContext.jsx";
+import "./Recommendation.css";
+import RecGrid from "../RecGrid/RecGrid.jsx";
 
 const Recommendation = () => {
   const user = useContext(UserContext);
@@ -13,56 +13,64 @@ const Recommendation = () => {
   useEffect(() => {
     const fetchRatingsbyValue = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/rec-ratings/${userId}`);
+        const response = await fetch(
+          `http://localhost:3000/rec-ratings/${userId}`
+        );
         const data = await response.json();
-        const genres = data.map((index) => index.episode.podcast.genre);
-        const refName = data.map((index) => index.episode.podcast.name);
-        const uniqueRefNames = Array.from(new Set(refName))
-        setrefPodcastName(uniqueRefNames)
-        const uniqueGenres = Array.from(new Set(genres))
+
+        const filteredData = data.filter(
+          (index) => index?.episode?.podcast !== null
+        );
+
+        const genres = filteredData.map((index) => {
+          return index?.episode?.podcast?.genre;
+        });
+
+        const refName = filteredData.map((index) => index.episode.podcast.name);
+        const uniqueRefNames = Array.from(new Set(refName));
+        setrefPodcastName(uniqueRefNames);
+        const uniqueGenres = Array.from(new Set(genres));
         setPodcastGenre(uniqueGenres);
       } catch (error) {
-        console.error('Error while fetching ratings', error);
+        console.error("Error while fetching ratings", error);
       }
     };
 
     fetchRatingsbyValue();
-  }, [userId]); 
+  }, [userId]);
 
   useEffect(() => {
     const fetchPodcastsByRec = async () => {
       try {
-
-        const allRecommendedPodcasts = []
+        const allRecommendedPodcasts = [];
 
         for (const genre of podcastGenre) {
-          const response = await fetch(`http://localhost:5000/api/recommendations?Genre=${genre}`);
-          const data = await response.json()
-          allRecommendedPodcasts.push(data.podcastSeries)
+          const response = await fetch(
+            `http://localhost:5000/api/recommendations?Genre=${genre}`
+          );
+          const data = await response.json();
+          allRecommendedPodcasts.push(data.podcastSeries);
         }
-        setRecommendedPodcasts(allRecommendedPodcasts)
+        setRecommendedPodcasts(allRecommendedPodcasts);
       } catch (err) {
         console.error(err);
       }
     };
-  
+
     if (podcastGenre.length > 0) {
       fetchPodcastsByRec();
     }
-  }, [podcastGenre]); 
+  }, [podcastGenre]);
 
-
-
-
-  return ( 
-  <div>
-   <h2 className='recommendation-heading'> Recommended for You</h2>
-    <RecGrid recPodcasts={recommendedPodcasts} refPodcastName={refPodcastName}
-    />
-  </div>
-  
-  
-  )
+  return (
+    <div>
+      <h2 className="recommendation-heading"> Recommended for You</h2>
+      <RecGrid
+        recPodcasts={recommendedPodcasts}
+        refPodcastName={refPodcastName}
+      />
+    </div>
+  );
 };
 
 export default Recommendation;
