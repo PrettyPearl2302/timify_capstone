@@ -191,7 +191,6 @@ app.get("/bookmarks/:userId", async (req, res) => {
   }
 });
 
-// route to get info on whether a bookmark record exists for this podcast id with this user id
 app.get("/bookmarks/user/:podcastId", async (req, res) => {
   const { podcastId } = req.params;
   const userId = req.headers.authorization;
@@ -214,31 +213,6 @@ app.get("/bookmarks/user/:podcastId", async (req, res) => {
     res
       .status(500)
       .json({ error: "An error occurred while checking the bookmark" });
-  }
-});
-
-app.get("/rating/user/:episodeId", async (req, res) => {
-  const { episodeId } = req.params;
-  const userId = req.headers.authorization;
-
-  try {
-    const rated = await Rating.findOne({
-      where: {
-        episodeId,
-        userId,
-      },
-    });
-
-    if (rated) {
-      return res.status(200).json({ ratingValue: rated.ratingValue });
-    } else {
-      return res.status(200).json({ ratingValue: false });
-    }
-  } catch (error) {
-    console.error("Error checking rating", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while checking the rating" });
   }
 });
 
